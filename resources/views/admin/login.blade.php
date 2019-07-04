@@ -19,8 +19,8 @@
     </script>
     <!-- Meta tag Keywords -->
     <!-- css files -->
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" /> <!-- Style-CSS -->
-    <link rel="stylesheet" href="css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
+    <link rel="stylesheet" href="/admin-resources/css/style.css" type="text/css" media="all" /> <!-- Style-CSS -->
+    <link rel="stylesheet" href="/admin-resources/css/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
     <!-- //css files -->
     <!-- online-fonts -->
     <link
@@ -40,7 +40,7 @@
             <div class="sub-main-w3">
                 <div class="wthree-pro">
                     <h2>Login with Admin</h2>
-                </div> 
+                </div>
                 <form action="{{route('login')}}" method="post">
                     @csrf
 

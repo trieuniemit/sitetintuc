@@ -14,13 +14,13 @@
 Route::get('/login', 'LoginController@getLogin')->name('login');
 Route::post('/login', 'LoginController@postLogin')->name('login');
 
-Route::get('/admin', 'AdminController@getAdmin')->name('admin');
-Route::get('/user', 'UserController@getUser')->name('user');
+//routes for admin
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'AdminController@getAdmin')->name('admin');
+    Route::get('/users', 'UserController@getUser')->name('user');
+});
 
 Route::get('/', function(){
     return view('welcome');
 });
 
-Route:: get('/index', function () {
-    return view('admin/index');
-});

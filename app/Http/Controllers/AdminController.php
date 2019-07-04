@@ -8,7 +8,7 @@ class AdminController extends Controller
 {
     //
     public function getAdmin (){
-        return view('admin');
+        return view('admin/admin');
     }
 
     public function postAdmin () {
