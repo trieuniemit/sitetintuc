@@ -7,18 +7,28 @@
         <div class="col-md-12">
             <div class="card">
             <div class="card-header card-header-primary">
-                <h4 class="card-title">Edit Profile</h4>
-                <p class="card-category">Complete your profile</p>
+                <div class="fleft">
+                    <h4 class="card-title">Danh sách quản trị viên</h4>
+                    {{-- <p class="card-category">Complete your profile</p> --}}
+                </div>
+                <ul class="nav nav-tabs fright" data-tabs="tabs">
+                    <li class="nav-item ">
+                        <a class="nav-link active" href="#profile" data-toggle="tab">
+                        <i class="material-icons">bug_report</i> Thêm mới
+                        <div class="ripple-container"></div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clear"></div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead class="">
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Tên</th>
                             <th>Email</th>
-                            <th>PassWord</th>
-                            <th>Created</th>
+                            <th>Ngày tạo</th>
                             <th></th>
                         </thead>
                         <tbody>
@@ -27,7 +37,6 @@
                                 <td>{{ $user->id }} </td>
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }} </td>
-                                <td>{{ $user->password }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td class="td-actions text-right">
                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task" aria-describedby="tooltip535830">
@@ -45,23 +54,6 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-md-4">
-            <div class="card card-profile">
-            <div class="card-avatar">
-                <a href="#pablo">
-                <img class="img" src="images/faces/marc.jpg" />
-                </a>
-            </div>
-            <div class="card-body">
-                <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-                <h4 class="card-title">Alec Thompson</h4>
-                <p class="card-description">
-                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                </p>
-                <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
-            </div>
-            </div>
-        </div> --}}
     </div>
 </div>
 @endsection

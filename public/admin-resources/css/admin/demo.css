@@ -60,3 +60,12 @@
   margin-top: 70px;
 }
 
+.fleft{
+    float: left;
+}
+.fright{
+    float: right;
+}
+.clear{
+    clear: both;
+}

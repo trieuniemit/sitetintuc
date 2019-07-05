@@ -78,27 +78,16 @@
             <div class="card-header card-header-tabs card-header-primary">
                 <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
-                    <span class="nav-tabs-title">Tasks:</span>
-                    <ul class="nav nav-tabs" data-tabs="tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#profile" data-toggle="tab">
-                        <i class="material-icons">bug_report</i> Bugs
-                        <div class="ripple-container"></div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#messages" data-toggle="tab">
-                        <i class="material-icons">code</i> Website
-                        <div class="ripple-container"></div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#settings" data-toggle="tab">
-                        <i class="material-icons">cloud</i> Server
-                        <div class="ripple-container"></div>
-                        </a>
-                    </li>
+                    <h4 class="nav-tabs-title">Các bài viết</h4>
+                    <ul class="nav nav-tabs fright" data-tabs="tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#profile" data-toggle="tab">
+                            <i class="material-icons">bug_report</i> Thêm mới
+                            <div class="ripple-container"></div>
+                            </a>
+                        </li>
                     </ul>
+                    <div class="clear"></div>
                 </div>
                 </div>
             </div>

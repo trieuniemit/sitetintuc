@@ -8,7 +8,9 @@ class AdminController extends Controller
 {
     //
     public function getAdmin (){
-        return view('admin/admin');
+        $currPage = 'dashboard';
+        $title = 'Bảng tin';
+        return view('admin/admin', compact('currPage','title'));
     }
 
     public function postAdmin () {

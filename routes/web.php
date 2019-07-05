@@ -18,9 +18,9 @@ Route::post('/login', 'LoginController@postLogin')->name('login');
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@getAdmin')->name('admin');
     Route::get('/users', 'UserController@getUser')->name('user');
+    Route::get('/profile', 'UserController@getProfile')->name('profile');
 });
 
 Route::get('/', function(){
     return view('welcome');
 });
-
