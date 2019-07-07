@@ -9,7 +9,6 @@
             <div class="card-header card-header-primary">
                 <div class="fleft">
                     <h4 class="card-title">Danh sách quản trị viên</h4>
-                    {{-- <p class="card-category">Complete your profile</p> --}}
                 </div>
                 <ul class="nav nav-tabs fright" data-tabs="tabs">
                     <li class="nav-item ">
