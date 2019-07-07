@@ -50,7 +50,7 @@
                 <li class="nav-item {{$currPage=='lang'?'active': ''}}">
                     <a class="nav-link" href="/rtl.html">
                         <i class="material-icons"></i>
-                        <p>Tin tức</p>
+                        <p><a href="{{route('posts.index')}}">Tin tức</a></p>
                     </a>
                 </li>
             </ul>
