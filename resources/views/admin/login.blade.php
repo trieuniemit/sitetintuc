@@ -60,10 +60,8 @@
                         </h3>
                     @endif
                     <div class="sub-w3l">
-                        <!-- <h6><a href="#">Forgot Password?</a></h6> -->
                         <div class="right-w3l">
                             <input type="submit" value="Login">
-                            <!-- <input type="submit" value="Register"> -->
                         </div>
                     </div>
                 </form>

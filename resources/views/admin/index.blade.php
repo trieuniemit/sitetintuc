@@ -88,7 +88,7 @@
                             </p> --}}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                            <a class="dropdown-item" href="#">Hồ sơ</a>
+                            <a class="dropdown-item" href="/admin/profile">Hồ sơ</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/login">Đăng xuất</a>
                         </div>
