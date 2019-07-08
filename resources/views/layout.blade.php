@@ -4,6 +4,7 @@
 <title>The News Reporter</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="assets/font/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="assets/font/font.css" />
 <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="screen" />
@@ -44,74 +45,19 @@
     </div>
     <div class="main_menu_area">
       <ul id="nav">
-        <li><a href="#">world news</a>
-          <ul>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a>
-              <ul>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-          </ul>
-        </li>
-        <li><a href="#">sports</a></li>
-        <li><a href="#">tech</a>
-          <ul>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-          </ul>
-        </li>
-        <li><a href="#">business</a></li>
-        <li><a href="#">Movies</a>
-          <ul>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a>
-              <ul>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-                <li><a href="#">Single item</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-          </ul>
-        </li>
-        <li><a href="#">entertainment</a></li>
-        <li><a href="#">culture</a></li>
-        <li><a href="#">Books</a>
-          <ul>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-            <li><a href="#">Single item</a></li>
-          </ul>
-        </li>
-        <li><a href="#">classifieds</a></li>
-        <li><a href="#">blogs</a></li>
+        @foreach ($menuItems as $item)
+          <li><a href="{{$item['link']}}">{{$item['title']}}</a></li>
+        @endforeach
       </ul>
     </div>
     
     @yield('main')
 
-    <div class="footer_top_area">
+    <!-- <div class="footer_top_area">
       <div class="inner_footer_top"> <img src="images/add3.png" alt="" /> </div>
-    </div>
+    </div> -->
     <div class="footer_bottom_area">
-      <div class="footer_menu">
+      <!-- <div class="footer_menu">
         <ul id="f_menu">
           <li><a href="#">world news</a></li>
           <li><a href="#">sports</a></li>
@@ -124,7 +70,7 @@
           <li><a href="#">classifieds</a></li>
           <li><a href="#">blogs</a></li>
         </ul>
-      </div>
+      </div> -->
       <div class="copyright_text">
         <p>Copyright &copy; 2045 The News Reporter Inc. All rights reserved | Design by <a target="_blank" rel="nofollow" href="http://www.graphicsfuel.com/2045/10/wp-magazine-theme-template-psd/">Rafi MD</a></p>
         <p>Trade marks and images used in the design are the copyright of their respective owners and are used for demo purposes only.</p>

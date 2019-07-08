@@ -18,6 +18,8 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('desc');
             $table->text('thumb');
+            $table->text('slug');
+            $table->integer('views');
             $table->longText('content');
             $table->integer('cat');
             $table->integer('author');

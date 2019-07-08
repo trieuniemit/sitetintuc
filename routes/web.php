@@ -21,6 +21,4 @@ Route::prefix('admin')->group(function () {
     Route::get('/profile', 'UserController@getProfile')->name('profile');
 });
 
-Route::get('/', function(){
-    return view('index');
-});
+Route::get('/', 'HomeController@index');
