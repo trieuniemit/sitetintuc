@@ -30,14 +30,14 @@ class AppServiceProvider extends ServiceProvider
         
         $menuItems = [
             [
-                'title' => 'Trang chủ',
+                'name' => 'Trang chủ',
                 'link' => '/'
             ]
         ];
 
         foreach($categories as $cat) {
             $menuItems[] = [
-                'title' => $cat->name,
+                'name' => $cat->name,
                 'link' => "/$cat->slug"
             ];
         }

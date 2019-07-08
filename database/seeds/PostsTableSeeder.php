@@ -13,8 +13,8 @@ class PostsTableSeeder extends Seeder
     {
         DB::table('posts')->insert([
             'title' => 'Cuộc gặp Trump - Kim ở nơi nguy hiểm nhất: Lịch sử hay dịp PR?',
-            'author' => 6,
-            'cat' => 1,
+            'user_id' => 1,
+            'category_id' => 1,
             'views' => 6,
             'slug' => 'cuoc-gap-trump-kim-o-noi-nguy-hiem-nhat',
             'desc' => 'Thủ tướng Nguyễn Xuân Phúc và đại diện EU chứng kiến lễ ký các hiệp định. Tham dự lễ ký có lãnh đạo và đại diện Quốc hội, các bộ, ban, ngành của Việt Nam; đại diện EU cùng các đại sứ các nước EU, ASEAN và các tổ chức quốc tế tại Việt Nam',

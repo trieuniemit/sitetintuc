@@ -21,8 +21,8 @@ class CreatePostsTable extends Migration
             $table->text('slug');
             $table->integer('views');
             $table->longText('content');
-            $table->integer('cat');
-            $table->integer('author');
+            $table->integer('category_id')->unsigned()->index();
+            $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });
     }
