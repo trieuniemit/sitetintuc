@@ -18,7 +18,10 @@
                                   <h6>{{$post->title}}</h6>
                                 </a>
                                 <div class="post-meta">
-                                  <p class="post-date">{{date('H:i d/mY', strtotime($post->created_at))}}</p>
+                                  @php
+                                    $dffHours = $post->created_at->diffInHours(Carbon\Carbon::now(), false);
+                                  @endphp
+                                  <p class="post-date">{{$dffHours<=24? $dffHours.' giờ trước': date('d/m/Y', strtotime($post->created_at))}}</p>
                                 </div>
                             </div>
                         </div>
@@ -136,174 +139,31 @@
               <div class="col-12 col-lg-8">
                   <div class="row">
 
+                    @foreach ($lastestPosts as $post)
                       <!-- Single Blog Post -->
                       <div class="col-12 col-lg-6">
                           <div class="single-blog-post style-3">
                               <!-- Post Thumb -->
                               <div class="post-thumb">
-                                  <a href="#"><img src="img/bg-img/7.jpg" alt=""></a>
+                                <a href="/{{$post->slug}}.html"><img src="{{$post->thumb}}" alt="{{$post->title}}"></a>
                               </div>
                               <!-- Post Data -->
                               <div class="post-data">
-                                  <a href="#" class="post-catagory">Finance</a>
-                                  <a href="#" class="post-title">
-                                      <h6>This Is How Notebooks Of An Artist Who Travels Around The World Look</h6>
+                                <a href="/{{$post->category->slug}}" class="post-catagory">{{$post->category->name}}</a>
+                                  <a href="/{{$post->slug}}.html" class="post-title">
+                                    <h6>{{$post->title}}</h6>
                                   </a>
                                   <div class="post-meta">
-                                      <p class="post-author">By <a href="#">Michael Smithson</a></p>
-                                      <p class="post-date">5 Hours Ago</p>
+                                      <p class="post-author">By <a href="/author_{{$post->user->username}}.html">{{$post->user->fullname}}</a></p>
+                                      @php
+                                        $dffHours = $post->created_at->diffInHours(Carbon\Carbon::now(), false);
+                                      @endphp
+                                      <p class="post-date">{{$dffHours<=24? $dffHours.' giờ trước': date('d/m/Y', strtotime($post->created_at))}}</p>
                                   </div>
                               </div>
                           </div>
                       </div>
-
-                      <!-- Single Blog Post -->
-                      <div class="col-12 col-lg-6">
-                          <div class="single-blog-post style-3">
-                              <!-- Post Thumb -->
-                              <div class="post-thumb">
-                                  <a href="#"><img src="img/bg-img/8.jpg" alt=""></a>
-                              </div>
-                              <!-- Post Data -->
-                              <div class="post-data">
-                                  <a href="#" class="post-catagory cat-3">4 Fun</a>
-                                  <a href="#" class="post-title">
-                                      <h6>10 Tips on how to have the best pool party on a small budget</h6>
-                                  </a>
-                                  <div class="post-meta">
-                                      <p class="post-author">By <a href="#">Michael Smithson</a></p>
-                                      <p class="post-date">5 Hours Ago</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!-- Single Blog Post -->
-                      <div class="col-12 col-lg-6">
-                          <div class="single-blog-post style-3">
-                              <!-- Post Thumb -->
-                              <div class="post-thumb">
-                                  <a href="#"><img src="img/bg-img/9.jpg" alt=""></a>
-                              </div>
-                              <!-- Post Data -->
-                              <div class="post-data">
-                                  <a href="#" class="post-catagory">Finance</a>
-                                  <a href="#" class="post-title">
-                                      <h6>This Is How Notebooks Of An Artist Who Travels Around The World Look</h6>
-                                  </a>
-                                  <div class="post-meta">
-                                      <p class="post-author">By <a href="#">Michael Smithson</a></p>
-                                      <p class="post-date">5 Hours Ago</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!-- Single Blog Post -->
-                      <div class="col-12 col-lg-6">
-                          <div class="single-blog-post style-3">
-                              <!-- Post Thumb -->
-                              <div class="post-thumb">
-                                  <a href="#"><img src="img/bg-img/10.jpg" alt=""></a>
-                              </div>
-                              <!-- Post Data -->
-                              <div class="post-data">
-                                  <a href="#" class="post-catagory cat-3">4 Fun</a>
-                                  <a href="#" class="post-title">
-                                      <h6>10 Tips on how to have the best pool party on a small budget</h6>
-                                  </a>
-                                  <div class="post-meta">
-                                      <p class="post-author">By <a href="#">Michael Smithson</a></p>
-                                      <p class="post-date">5 Hours Ago</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!-- Single Blog Post -->
-                      <div class="col-12 col-lg-6">
-                          <div class="single-blog-post style-3">
-                              <!-- Post Thumb -->
-                              <div class="post-thumb">
-                                  <a href="#"><img src="img/bg-img/11.jpg" alt=""></a>
-                              </div>
-                              <!-- Post Data -->
-                              <div class="post-data">
-                                  <a href="#" class="post-catagory cat-2">Travel</a>
-                                  <a href="#" class="post-title">
-                                      <h6>This Is How Notebooks Of An Artist Who Travels Around The World Look</h6>
-                                  </a>
-                                  <div class="post-meta">
-                                      <p class="post-author">By <a href="#">Michael Smithson</a></p>
-                                      <p class="post-date">5 Hours Ago</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!-- Single Blog Post -->
-                      <div class="col-12 col-lg-6">
-                          <div class="single-blog-post style-3">
-                              <!-- Post Thumb -->
-                              <div class="post-thumb">
-                                  <a href="#"><img src="img/bg-img/12.jpg" alt=""></a>
-                              </div>
-                              <!-- Post Data -->
-                              <div class="post-data">
-                                  <a href="#" class="post-catagory cat-4">featured</a>
-                                  <a href="#" class="post-title">
-                                      <h6>10 Tips on how to have the best pool party on a small budget</h6>
-                                  </a>
-                                  <div class="post-meta">
-                                      <p class="post-author">By <a href="#">Michael Smithson</a></p>
-                                      <p class="post-date">5 Hours Ago</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!-- Single Blog Post -->
-                      <div class="col-12 col-lg-6">
-                          <div class="single-blog-post style-3">
-                              <!-- Post Thumb -->
-                              <div class="post-thumb">
-                                  <a href="#"><img src="img/bg-img/13.jpg" alt=""></a>
-                              </div>
-                              <!-- Post Data -->
-                              <div class="post-data">
-                                  <a href="#" class="post-catagory">Finance</a>
-                                  <a href="#" class="post-title">
-                                      <h6>This Is How Notebooks Of An Artist Who Travels Around The World Look</h6>
-                                  </a>
-                                  <div class="post-meta">
-                                      <p class="post-author">By <a href="#">Michael Smithson</a></p>
-                                      <p class="post-date">5 Hours Ago</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-                      <!-- Single Blog Post -->
-                      <div class="col-12 col-lg-6">
-                          <div class="single-blog-post style-3">
-                              <!-- Post Thumb -->
-                              <div class="post-thumb">
-                                  <a href="#"><img src="img/bg-img/14.jpg" alt=""></a>
-                              </div>
-                              <!-- Post Data -->
-                              <div class="post-data">
-                                  <a href="#" class="post-catagory cat-3">4 Fun</a>
-                                  <a href="#" class="post-title">
-                                      <h6>10 Tips on how to have the best pool party on a small budget</h6>
-                                  </a>
-                                  <div class="post-meta">
-                                      <p class="post-author">By <a href="#">Michael Smithson</a></p>
-                                      <p class="post-date">5 Hours Ago</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
+                    @endforeach
                   </div>
 
                   <div class="row">

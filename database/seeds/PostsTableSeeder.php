@@ -13,7 +13,7 @@ class PostsTableSeeder extends Seeder
     {
         DB::table('posts')->insert([
             'title' => 'Cuộc gặp Trump - Kim ở nơi nguy hiểm nhất: Lịch sử hay dịp PR?',
-            'author' => 6,
+            'user_id' => 1,
             'category_id' => 1,
             'views' => 6,
             'slug' => 'cuoc-gap-trump-kim-o-noi-nguy-hiem-nhat',
