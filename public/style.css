@@ -660,8 +660,8 @@ textarea:focus {
       .single-blog-post.style-3 .post-data .post-title h6 {
         -webkit-transition-duration: 500ms;
         transition-duration: 500ms;
-        line-height: 1.5;
-        font-size: 24px;
+        line-height: 1.3;
+        font-size: 21px;
         color: #231f1f; }
         @media only screen and (max-width: 767px) {
           .single-blog-post.style-3 .post-data .post-title h6 {

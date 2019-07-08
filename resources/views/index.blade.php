@@ -11,7 +11,7 @@
                       @foreach ($randomPosts as $post)
                         <div class="single-blog-post d-flex align-items-center mb-50">
                             <div class="post-thumb">
-                                <a href="#"><img src="img/bg-img/1.jpg" alt=""></a>
+                                <a href="#"><img src="{{$post->thumb}}" alt="{{$post->title}}"></a>
                             </div>
                             <div class="post-data">
                                 <a href="/{{$post->slug}}.html" class="post-title">
