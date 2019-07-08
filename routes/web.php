@@ -23,6 +23,4 @@ Route::prefix('admin')->group(function () {
     Route::get('/profile/editpassword', 'UserController@getProfile')->name('editpassword');
 });
 
-Route::get('/', function(){
-    return view('index');
-});
+Route::get('/', 'HomeController@index');

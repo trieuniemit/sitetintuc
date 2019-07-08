@@ -17,7 +17,7 @@
 
 /** THEME
 ===================================*/
-.bx-wrapper .bx-viewport{-moz-box-shadow:0 0 5px #ccc; -webkit-box-shadow:0 0 5px #ccc; box-shadow:0 0 5px #ccc; border:solid #fff 5px; background:#fff}
+.bx-wrapper .bx-viewport{margin-top: 5px}
 .bx-wrapper .bx-pager, .bx-wrapper .bx-controls-auto{position:absolute; bottom:-30px; width:100%}
 
 /* LOADER */
