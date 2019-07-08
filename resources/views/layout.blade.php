@@ -1,102 +1,270 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>The News Reporter</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="assets/font/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css" href="assets/font/font.css" />
-<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="assets/css/jquery.bxslider.css" media="screen" />
-</head>
-<body>
-<div class="body_wrapper">
-  <div class="center">
-    <div class="header_area">
-      <div class="logo floatleft"><a href="#"><img src="images/logo.png" alt="" /></a></div>
-      <div class="top_menu floatleft">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">Subscribe</a></li>
-          <li><a href="#">Login</a></li>
-        </ul>
-      </div>
-      <div class="social_plus_search floatright">
-        <div class="social">
-          <ul>
-            <li><a href="#" class="twitter"></a></li>
-            <li><a href="#" class="facebook"></a></li>
-            <li><a href="#" class="feed"></a></li>
-          </ul>
-        </div>
-        <div class="search">
-          <form action="#" method="post" id="search_form">
-            <input type="text" value="Search news" id="s" />
-            <input type="submit" id="searchform" value="search" />
-            <input type="hidden" value="post" name="post_type" />
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="main_menu_area">
-      <ul id="nav">
-        @foreach ($menuItems as $item)
-          <li><a href="{{$item['link']}}">{{$item['title']}}</a></li>
-        @endforeach
-      </ul>
-    </div>
-    
-    @yield('main')
+<!DOCTYPE html>
+<html lang="en">
 
-    <!-- <div class="footer_top_area">
-      <div class="inner_footer_top"> <img src="images/add3.png" alt="" /> </div>
-    </div> -->
-    <div class="footer_bottom_area">
-      <!-- <div class="footer_menu">
-        <ul id="f_menu">
-          <li><a href="#">world news</a></li>
-          <li><a href="#">sports</a></li>
-          <li><a href="#">tech</a></li>
-          <li><a href="#">business</a></li>
-          <li><a href="#">Movies</a></li>
-          <li><a href="#">entertainment</a></li>
-          <li><a href="#">culture</a></li>
-          <li><a href="#">Books</a></li>
-          <li><a href="#">classifieds</a></li>
-          <li><a href="#">blogs</a></li>
-        </ul>
-      </div> -->
-      <div class="copyright_text">
-        <p>Copyright &copy; 2045 The News Reporter Inc. All rights reserved | Design by <a target="_blank" rel="nofollow" href="http://www.graphicsfuel.com/2045/10/wp-magazine-theme-template-psd/">Rafi MD</a></p>
-        <p>Trade marks and images used in the design are the copyright of their respective owners and are used for demo purposes only.</p>
-      </div>
-    </div>
-  </div>
-</div>
-<script type="text/javascript" src="assets/js/jquery-min.js"></script> 
-<script type="text/javascript" src="assets/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="assets/js/jquery.bxslider.js"></script> 
-<script type="text/javascript" src="assets/js/selectnav.min.js"></script> 
-<script type="text/javascript">
-selectnav('nav', {
-    label: '-Navigation-',
-    nested: true,
-    indent: '-'
-});
-selectnav('f_menu', {
-    label: '-Navigation-',
-    nested: true,
-    indent: '-'
-});
-$('.bxslider').bxSlider({
-    mode: 'fade',
-    captions: true
-});
-</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Viral Story - Viral News Magazine Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="top-header-content d-flex align-items-center justify-content-between">
+                            <!-- Breaking News Area -->
+                            <div class="top-breaking-news-area">
+                                <div id="breakingNewsTicker" class="ticker">
+                                    <ul>
+                                        <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                        <li><a href="#">Welcome to Colorlib Family.</a></li>
+                                        <li><a href="#">Nam eu metus sitsit amet, consec!</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Social Info Area-->
+                            <div class="top-social-info-area">
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="viral-news-main-menu" id="stickyMenu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="viralnewsNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt="Logo"></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    @php($index = 0)
+                                    @foreach ($menuItems as $item)
+                                      <li {{$index==0?'class=active': ''}}><a href="{{$item['link']}}">{{$item['name']}}</a></li>
+                                      @php($index++)
+                                    @endforeach
+                                    {{-- <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="catagory.html">Catagories</a></li>
+                                            <li><a href="single-post.html">Single Article</a></li>
+                                            <li><a href="quize-article.html">Quize Article</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="#">Dropdown</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="index.html">Home</a></li>
+                                                    <li><a href="catagory.html">Catagories</a></li>
+                                                    <li><a href="single-post.html">Single Article</a></li>
+                                                    <li><a href="quize-article.html">Quize Article</a></li>
+                                                    <li><a href="contact.html">Contact</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li> --}}
+                                </ul>
+
+                                <!-- Search Button -->
+                                <div class="search-btn">
+                                    <i id="searchbtn" class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+
+                                <!-- Search Form -->
+                                <div class="viral-search-form">
+                                    <form id="search" action="#" method="get">
+                                        <input type="text" name="search-terms" placeholder="Enter your keywords ...">
+                                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    </form>
+                                </div>
+
+                                <!-- Video Post Button -->
+                                {{-- <div class="add-post-button">
+                                    <a href="#" class="btn add-post-btn">Add Post</a>
+                                </div> --}}
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    @yield('main-section')
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+
+        <!-- Main Footer Area -->
+        {{-- <div class="main-footer-area">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Footer Widget Area -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="footer-widget-area">
+                            <!-- Footer Logo -->
+                            <div class="footer-logo">
+                                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                            </div>
+                            <!-- Footer Nav -->
+                            <div class="footer-nav">
+                                <ul>
+                                    <li class="active"><a href="#">Top 10</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">Funny</a></li>
+                                    <li><a href="#">Advertising</a></li>
+                                    <li><a href="#">Celebs</a></li>
+                                    <li><a href="#">Lifestyle</a></li>
+                                    <li><a href="#">Videos</a></li>
+                                    <li><a href="#">Travel</a></li>
+                                    <li><a href="#">Features</a></li>
+                                    <li><a href="#">Submit a video</a></li>
+                                    <li><a href="#">Don’tMiss</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <!-- Newsletter Widget -->
+                        <div class="newsletter-widget">
+                            <h4>Sign up to <br>our newsletter</h4>
+                            <form action="#" method="post">
+                                <input type="text" name="text" placeholder="Name">
+                                <input type="email" name="email" placeholder="Email">
+                                <button type="submit" class="btn w-100">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Footer Widget Area -->
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="footer-widget-area">
+                            <!-- Widget Title -->
+                            <h4 class="widget-title">Latest articles</h4>
+
+                            <!-- Single Latest Post -->
+                            <div class="single-blog-post style-2 d-flex align-items-center">
+                                <div class="post-thumb">
+                                    <a href="#"><img src="img/bg-img/4.jpg" alt=""></a>
+                                </div>
+                                <div class="post-data">
+                                    <a href="#" class="post-title">
+                                        <h6>Pellentesque mattis arcu massa, nec fringilla turpis eleifend id.</h6>
+                                    </a>
+                                    <div class="post-meta">
+                                        <p class="post-date"><a href="#">7:00 AM | April 14</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Latest Post -->
+                            <div class="single-blog-post style-2 d-flex align-items-center">
+                                <div class="post-thumb">
+                                    <a href="#"><img src="img/bg-img/5.jpg" alt=""></a>
+                                </div>
+                                <div class="post-data">
+                                    <a href="#" class="post-title">
+                                        <h6>Sed a elit euismod augue semper congue sit amet ac.</h6>
+                                    </a>
+                                    <div class="post-meta">
+                                        <p class="post-date"><a href="#">7:00 AM | April 14</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Single Latest Post -->
+                            <div class="single-blog-post style-2 d-flex align-items-center">
+                                <div class="post-thumb">
+                                    <a href="#"><img src="img/bg-img/6.jpg" alt=""></a>
+                                </div>
+                                <div class="post-data">
+                                    <a href="#" class="post-title">
+                                        <h6>Pellentesque mattis arcu massa, nec fringilla turpis eleifend id.</h6>
+                                    </a>
+                                    <div class="post-meta">
+                                        <p class="post-date"><a href="#">7:00 AM | April 14</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+
+        <!-- Bottom Footer Area -->
+        <div class="bottom-footer-area">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <!-- Copywrite -->
+                        <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
 </body>
+
 </html>
