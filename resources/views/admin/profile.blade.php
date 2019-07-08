@@ -11,7 +11,7 @@
               {{-- <p class="card-category">Complete your profile</p> --}}
                 <ul class="nav nav-tabs fright" data-tabs="tabs">
                     <li class="nav-item ">
-                        <a class="nav-link active" href="/admin/profile/editpassword" data-toggle="tab">
+                    <a class="nav-link active" href="{{route('editpassword')}}">
                         <i class="material-icons">bug_report</i> Đổi mật khẩu
                         <div class="ripple-container"></div>
                         </a>
@@ -27,7 +27,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="bmd-label-floating">Username</label>
-                      <input type="text" class="form-control" name="username" value="{{ $user->username }}">
+                      <input type="text" class="form-control" disabled name="username" value="{{ $user->username }}">
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -52,6 +52,17 @@
                       <input type="text" class="form-control" name="phone" value="{{ $user->phone}}">
                     </div>
                   </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @if($errors->any())
+                            <h3 style="color: red;">
+                                @foreach ($errors->all() as $error)
+                                    <p>{{ $error }}</p>
+                                @endforeach
+                            </h3>
+                        @endif
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary pull-right">Cập nhật hồ sơ</button>
                 <div class="clearfix"></div>

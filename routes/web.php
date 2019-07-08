@@ -17,11 +17,12 @@ Route::post('/login', 'LoginController@postLogin')->name('login');
 //routes for admin
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@getAdmin')->name('admin');
-    Route::get('/users', 'UserController@getUser')->name('user');
-    Route::post('/profile', 'UserController@postProfile')->name('profile.post');
-    Route::get('/profile', 'UserController@getProfile')->name('profile');
+    Route::resource('/users', 'UserController');
+    Route::post('/profile', 'ProfileController@postProfile')->name('profile.post');
+    Route::get('/profile', 'ProfileController@getProfile')->name('profile');
     Route::resource('posts','PostController');
-    Route::get('/profile/editpassword', 'UserController@getProfile')->name('editpassword');
+    Route::get('/profile/editpassword', 'ProfileController@getEditPassword')->name('editpassword');
+    Route::post('/profile/editpassword', 'ProfileController@postEditPassword')->name('editpassword.post');
 });
 
 Route::get('/', 'HomeController@index');
