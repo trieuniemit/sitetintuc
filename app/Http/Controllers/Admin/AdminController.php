@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Post;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -12,7 +13,8 @@ class AdminController extends Controller
         $currPage = 'dashboard';
         $title = 'Bảng tin';
         $users = User::all();
-        return view('admin/admin', compact('users', 'currPage', 'title'));
+        $posts = Post::all();
+        return view('admin/admin', compact('users','posts', 'currPage', 'title'));
     }
 
     public function postAdmin () {

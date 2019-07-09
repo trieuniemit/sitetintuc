@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
+        $posts->load('category', 'user');
         $currPage = 'posts';
         $title = 'Quản trị viên';
         return view('admin.post', compact('posts','currPage','title'));
@@ -27,7 +29,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $currPage = 'posts';
+        $title = 'thông tin';
+        return view('admin.post_create', compact('categories','currPage','title'));
     }
 
     /**
@@ -38,7 +43,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newPost = new Post();
+        
     }
 
     /**

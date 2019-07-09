@@ -13,7 +13,7 @@
                 </div>
                 <ul class="nav nav-tabs fright" data-tabs="tabs">
                     <li class="nav-item ">
-                        <a class="nav-link active" href="#post_create" data-toggle="tab">
+                        <a class="nav-link active" href="{{route('posts.create')}}">
                         <i class="material-icons">bug_report</i> Thêm mới
                         <div class="ripple-container"></div>
                         </a>
@@ -25,22 +25,24 @@
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead class="">
-                            <th width="20%">title</th>
-                            <th>desc</th>
-                            <th>thumb</th>
-                            <th>cat</th>
-                            <th>author</th>
-                            <th>created_at</th>
-                            <th>updated_at</th>
+                            <th width="20%">Tiêu đề</th>
+                            <th>Miêu tả</th>
+                            <th>Ảnh</th>
+                            <th>slug</th>
+                            <th>Loại tin</th>
+                            <th>Tác giả</th>
+                            <th>Ngày viết</th>
+                            <th>Ngày cập nhập gần nhất</th>
                         </thead>
                         <tbody>
                         @foreach ($posts as $post)
                             <tr>
                                 <td>{{ $post->title }}</td>
-                                <td width="70%">{{ $post->desc }} </td>
+                                <td width="50%">{{ $post->desc }} </td>
                                 <td><img src="{{ $post->thumb }}" /></td>
-                                <td>{{ $post->cat }}</td>
-                                <td>{{ $post->author }}</td>
+                                <td>{{ $post->slug }}</td>
+                                <td>{{ $post->category->name }}</td>
+                                <td>{{ $post->user->fullname }}</td>
                                 <td>{{ $post->created_at }}</td>
                                 <td>{{ $post->updated_at }}</td>
                                 <td class="td-actions text-right">
