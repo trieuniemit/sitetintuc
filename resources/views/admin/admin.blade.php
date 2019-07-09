@@ -97,7 +97,7 @@
                     <table class="table">
                     <tbody>
                         <tr>
-                        <td>
+                        {{-- <td>
                             <div class="form-check">
                             <label class="form-check-label">
                                 <input class="form-check-input" type="checkbox" value="" checked>
@@ -106,9 +106,19 @@
                                 </span>
                             </label>
                             </div>
-                        </td>
+                        </td> --}}
 
-                        @foreach ($posts as $post)      
+                        @foreach ($posts as $post)  
+                            <td>
+                                <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="checkbox" value="">
+                                    <span class="form-check-sign">
+                                    <span class="check"></span>
+                                    </span>
+                                </label>
+                                </div>
+                            </td>    
                             <td><a href="">{{ $post->title }}</a>
                             <td class="td-actions text-right">
                                 <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
@@ -120,16 +130,6 @@
                             </td>
                             </tr>
                             <tr>
-                            <td>
-                                <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                    <span class="form-check-sign">
-                                    <span class="check"></span>
-                                    </span>
-                                </label>
-                                </div>
-                            </td>
                         @endforeach
 
                     </tbody>
