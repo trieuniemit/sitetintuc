@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        if(Schema::hasTable('users')) {
+        if(Schema::hasTable('categories')) {
             $categories = Category::all();
 
             $menuItems = [
