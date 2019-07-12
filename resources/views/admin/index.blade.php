@@ -42,15 +42,15 @@
                     </a>
                 </li>
                 <li class="nav-item {{$currPage=='lang'?'active': ''}}">
-                    <a class="nav-link" href="/rtl.html">
+                <a class="nav-link" href="{{route('categories.index')}}">
                         <i class="fas fa-list-alt"></i>
                         <p>Danh mục tin</p>
                     </a>
                 </li>
                 <li class="nav-item {{$currPage=='lang'?'active': ''}}">
-                    <a class="nav-link" href="/rtl.html">
-                        <i class="material-icons"></i>
-                        <p><a href="{{route('posts.index')}}">Tin tức</a></p>
+                    <a class="nav-link" href="{{route('posts.index')}}">
+                        <i class="fas fa-list-alt"></i>
+                        <p>Tin tức</p>
                     </a>
                 </li>
             </ul>

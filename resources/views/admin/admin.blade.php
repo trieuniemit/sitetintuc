@@ -108,7 +108,7 @@
                             </div>
                         </td> --}}
 
-                        @foreach ($posts as $post)  
+                        @foreach ($posts as $post)  {{--xuat bai title ra trang--}}
                             <td>
                                 <div class="form-check">
                                 <label class="form-check-label">
