@@ -26,22 +26,25 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        $categories = Category::all();
-        
-        $menuItems = [
-            [
-                'name' => 'Trang chủ',
-                'link' => '/'
-            ]
-        ];
 
-        foreach($categories as $cat) {
-            $menuItems[] = [
-                'name' => $cat->name,
-                'link' => "/$cat->slug"
+        if(Schema::hasTable('users')) {
+            $categories = Category::all();
+
+            $menuItems = [
+                [
+                    'name' => 'Trang chủ',
+                    'link' => '/'
+                ]
             ];
-        }
 
-        view()->share(compact('menuItems'));
+            foreach($categories as $cat) {
+                $menuItems[] = [
+                    'name' => $cat->name,
+                    'link' => "/$cat->slug"
+                ];
+            }
+
+            view()->share(compact('menuItems'));
+        }
     }
 }
