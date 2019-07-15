@@ -1,8 +1,8 @@
 @extends('admin/index')
 
 @section('content')
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
-<script>tinymce.init({selector:'textarea'});</script>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script> CKEDITOR.replace('editor1'); </script>
 
 <div class="content">
     <div class="container-fluid">
@@ -60,7 +60,12 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="bmd-label-floating">Nội dung</label>
-                        <textarea class="form-control" name="content" ></textarea>
+                        {{-- <textarea class="form-control" name="content" ></textarea> --}}
+
+                        <div class="form-group col-md-12">
+                          <textarea name="txtContent" class="form-control " id="editor1"></textarea>
+                        </div>
+
                       </div>
                     </div>
                 </div>
