@@ -11,17 +11,17 @@
                       @foreach ($randomPosts as $post)
                         <div class="single-blog-post d-flex align-items-center mb-50">
                             <div class="post-thumb">
-                                <a href="#"><img src="{{$post->thumb}}" alt="{{$post->title}}"></a>
+                                <a href="/{{$post->category->slug}}/{{$post->slug}}.html"><img src="{{$post->thumb}}" alt="{{$post->title}}"></a>
                             </div>
                             <div class="post-data">
-                                <a href="/{{$post->slug}}.html" class="post-title">
+                                <a href="/{{$post->category->slug}}/{{$post->slug}}.html" class="post-title">
                                   <h6>{{$post->title}}</h6>
                                 </a>
                                 <div class="post-meta">
                                   @php
                                     $dffHours = $post->created_at->diffInHours(Carbon\Carbon::now(), false);
                                   @endphp
-                                  <p class="post-date">{{$dffHours<=24? $dffHours.' giờ trước': date('d/m/Y', strtotime($post->created_at))}}</p>
+                                  <p class="post-date">{{$dffHours<=24? $dffHours.' giờ trước': date('H:i d/m/Y', strtotime($post->created_at))}}</p>
                                 </div>
                             </div>
                         </div>
@@ -129,64 +129,98 @@
           </div>
       </div>
   </div>
-  <!-- ##### Welcome Slide Area End ##### -->
 
-  <!-- ##### Blog Post Area Start ##### -->
   <div class="viral-story-blog-post section-padding-0-50">
       <div class="container">
           <div class="row">
               <!-- Blog Posts Area -->
               <div class="col-12 col-lg-8">
-                  <div class="row">
-
-                    @foreach ($lastestPosts as $post)
-                      <!-- Single Blog Post -->
-                      <div class="col-12 col-lg-6">
-                          <div class="single-blog-post style-3">
-                              <!-- Post Thumb -->
-                              <div class="post-thumb">
-                                <a href="/{{$post->slug}}.html"><img src="{{$post->thumb}}" alt="{{$post->title}}"></a>
-                              </div>
-                              <!-- Post Data -->
-                              <div class="post-data">
-                                <a href="/{{$post->category->slug}}" class="post-catagory">{{$post->category->name}}</a>
-                                  <a href="/{{$post->slug}}.html" class="post-title">
-                                    <h6>{{$post->title}}</h6>
-                                  </a>
-                                  <div class="post-meta">
-                                      <p class="post-author">By <a href="/author_{{$post->user->username}}.html">{{$post->user->fullname}}</a></p>
-                                      @php
-                                        $dffHours = $post->created_at->diffInHours(Carbon\Carbon::now(), false);
-                                      @endphp
-                                      <p class="post-date">{{$dffHours<=24? $dffHours.' giờ trước': date('d/m/Y', strtotime($post->created_at))}}</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                    @endforeach
+                  <div class="treading-articles-widget">
+                    <h4>Bài viết mới</h4>
+                    <div class="row">
+                        @foreach ($lastestPosts as $post)
+                        <!-- Single Blog Post -->
+                        <div class="col-12 col-lg-6">
+                            <div class="single-blog-post style-3">
+                                <!-- Post Thumb -->
+                                <div class="post-thumb">
+                                    <a href="/{{$post->category->slug}}/{{$post->slug}}.html"><img src="{{$post->thumb}}" alt="{{$post->title}}"></a>
+                                </div>
+                                <!-- Post Data -->
+                                <div class="post-data">
+                                    <a href="/{{$post->category->slug}}" class="post-catagory">{{$post->category->name}}</a>
+                                    <a href="/{{$post->category->slug}}/{{$post->slug}}.html" class="post-title">
+                                        <h6>{{$post->title}}</h6>
+                                    </a>
+                                    <div class="post-meta">
+                                        <p class="post-author">Đăng bởi <a href="/author_{{$post->user->username}}.html">{{$post->user->fullname}}</a></p>
+                                        @php
+                                            $dffHours = $post->created_at->diffInHours(Carbon\Carbon::now(), false);
+                                        @endphp
+                                        <p class="post-date">{{$dffHours<=24? $dffHours.' giờ trước': date('H:i d/m/Y', strtotime($post->created_at))}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="viral-news-pagination">
+                                <nav aria-label="Page navigation example">
+                                    {{$lastestPosts->links()}}
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
                   </div>
+                <div class="related-articles-">
+                    <h4 style="margin-bottom: 10px">Related Articles</h4>
+                    <div class="row">
+                        <!-- Single Post -->
+                        <div class="col-12">
+                            <div class="single-blog-post style-3 style-5 d-flex align-items-center mb-50">
+                                <!-- Post Thumb -->
+                                <div class="post-thumb">
+                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
+                                </div>
+                                <!-- Post Data -->
+                                <div class="post-data">
+                                    <a href="#" class="post-catagory">Finance</a>
+                                    <a href="#" class="post-title">
+                                        <h6>This Is How Notebooks Of An Artist Who Travels Around The World Look</h6>
+                                    </a>
+                                    <div class="post-meta">
+                                        <p class="post-author">By <a href="#">Michael Smithson</a></p>
+                                        <p class="post-date">5 Hours Ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                  <div class="row">
-                      <div class="col-12">
-                          <div class="viral-news-pagination">
-                              <nav aria-label="Page navigation example">
-                                  <ul class="pagination">
-                                      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">01</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">04</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">05</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">15</a></li>
-                                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                  </ul>
-                              </nav>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-
+                        <!-- Single Post -->
+                        <div class="col-12">
+                            <div class="single-blog-post style-3 style-5 d-flex align-items-center mb-50">
+                                <!-- Post Thumb -->
+                                <div class="post-thumb">
+                                    <a href="#"><img src="img/bg-img/20.jpg" alt=""></a>
+                                </div>
+                                <!-- Post Data -->
+                                <div class="post-data">
+                                    <a href="#" class="post-catagory">Finance</a>
+                                    <a href="#" class="post-title">
+                                        <h6>This Is How Notebooks Of An Artist Who Travels Around The World Look</h6>
+                                    </a>
+                                    <div class="post-meta">
+                                        <p class="post-author">By <a href="#">Michael Smithson</a></p>
+                                        <p class="post-date">5 Hours Ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
               @include('sidebar')
           </div>
       </div>
