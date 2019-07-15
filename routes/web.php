@@ -24,7 +24,6 @@ Route::prefix('admin')->group(function () {
     Route::resource('categories','CategoryController');
     Route::get('/profile/editpassword', 'ProfileController@getEditPassword')->name('editpassword');
     Route::post('/profile/editpassword', 'ProfileController@postEditPassword')->name('editpassword.post');
-    Route::resource('/users','UserController');
 });
 
 Route::get('/', 'HomeController@index');

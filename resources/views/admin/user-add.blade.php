@@ -11,19 +11,35 @@
             </div>
 
             <div class="card-body">
-            <form method="POST" action="{{ route('profile.post') }}">
+            <form method="POST" action="{{ route('users.create') }}">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Username</label>
-                        <input type="text" class="form-control" disabled name="username" value="{{ $user->username }}">
+                        <input type="text" class="form-control" name="username">
                     </div>
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Email</label>
-                        <input type="email" class="form-control" name="email" value="{{ $user->email}}">
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Mật khẩu</label>
+                        <input type="password" name="new-password" class="form-control">
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Nhập lại mật khẩu</label>
+                        <input type="password" name="retype-new-password" class="form-control">
                     </div>
                     </div>
                 </div>
@@ -31,7 +47,7 @@
                     <div class="col-md-12">
                     <div class="form-group">
                         <label class="bmd-label-floating">Họ và tên</label>
-                        <input type="text" class="form-control" name="fullname" value="{{ $user->fullname}}">
+                        <input type="text" class="form-control" name="fullname">
                     </div>
                     </div>
                 </div>
@@ -39,7 +55,7 @@
                     <div class="col-md-12">
                     <div class="form-group">
                         <label class="bmd-label-floating">Số điện thoại</label>
-                        <input type="text" class="form-control" name="phone" value="{{ $user->phone}}">
+                        <input type="text" class="form-control" name="phone">
                     </div>
                     </div>
                 </div>

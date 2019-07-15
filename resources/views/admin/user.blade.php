@@ -12,9 +12,9 @@
                 </div>
                 <ul class="nav nav-tabs fright" data-tabs="tabs">
                     <li class="nav-item ">
-                    <a class="nav-link active" href="{{ route('users.create') }}" data-toggle="tab">
-                        <i class="material-icons">bug_report</i> Thêm mới
-                        <div class="ripple-container"></div>
+                        <a class="nav-link active" href="{{ route('users.create') }}">
+                            <i class="material-icons">bug_report</i> Thêm mới
+                            <div class="ripple-container"></div>
                         </a>
                     </li>
                 </ul>
@@ -39,10 +39,16 @@
                                 <td>{{ $user->created_at }}</td>
                                 <td class="td-actions text-right">
                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
-                                        <i class="material-icons">edit</i>
+                                        <a class="nav-link active" href="{{ route('users.edit', $user->id) }}">
+                                            <i class="material-icons">edit</i>
+                                            <div class="ripple-container"></div>
+                                        </a>
                                     </button>
                                     <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
-                                        <i class="material-icons">close</i>
+                                        <a class="nav-link active" href="{{ route('users.destroy', $user->id) }}">
+                                            <i class="material-icons">close</i>
+                                            <div class="ripple-container"></div>
+                                        </a>
                                     </button>
                                 </td>
                             </tr>
