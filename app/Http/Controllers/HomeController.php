@@ -37,7 +37,7 @@ class HomeController extends Controller
         $randomPosts = Post::limit(5)->orderBy("views", 'DESC')->get();
         $randomPosts->load('category', 'user');
 
-        return $random Posts;
+        return $random;
     }
 
     public function getPostInCats() {
