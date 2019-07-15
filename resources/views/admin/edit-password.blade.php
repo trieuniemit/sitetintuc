@@ -18,7 +18,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Mật khẩu hiện tại</label>
-                                    <input type="password" name="current-name" class="form-control">
+                                    <input type="password" name="current-password" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -46,14 +46,10 @@
                                             <p>{{ $error }}</p>
                                         @endforeach
                                     </h3>
-                                @else
-                                    <script>
-                                        alert("Bạn đã đổi mật khẩu thành công !");
-                                    </script>
                                 @endif
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary pull-right">Đổi mật khẩu</button>
+                        <button type="submit" class="btn btn-primary pull-right" onclick="check()">Đổi mật khẩu</button>
                         <div class="clearfix"></div>
                     </form>
                 </div>

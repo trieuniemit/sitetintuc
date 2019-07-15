@@ -12,7 +12,7 @@
                 </div>
                 <ul class="nav nav-tabs fright" data-tabs="tabs">
                     <li class="nav-item ">
-                        <a class="nav-link active" href="#profile" data-toggle="tab">
+                    <a class="nav-link active" href="{{ route('users.create') }}" data-toggle="tab">
                         <i class="material-icons">bug_report</i> Thêm mới
                         <div class="ripple-container"></div>
                         </a>
@@ -38,7 +38,7 @@
                                 <td>{{ $user->email }} </td>
                                 <td>{{ $user->created_at }}</td>
                                 <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task" aria-describedby="tooltip535830">
+                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
                                         <i class="material-icons">edit</i>
                                     </button>
                                     <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">

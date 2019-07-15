@@ -63,17 +63,17 @@ class ProfileController extends Controller
 
     public function postEditPassword (Request $request) {
         $rules = [
-    		'password' => 'required|min:5',
-    		'newPassword' =>'required|min:5',
-    		'retypeNewPassword' => 'required|min:5'
+    		'current-password' => 'required|min:5',
+    		'new-password' =>'required|min:5',
+    		'retype-new-password' => 'required|min:5'
     	];
     	$messages = [
-    		'password.required' => 'Mật khẩu là trường bắt buộc',
-            'password.min' => 'Mật khẩu chứa ít nhất 5 kí tự',
-            'newPassword.required' => 'Mật khẩu mới là trường bắt buộc',
-            'newPassword.min' => 'Mật khẩu chứa ít nhất 5 kí tự',
-            'retypeNewPassword.required' => 'Mời bạn nhập lại mật khẩu',
-            'retypeNewPassword.min' => 'Mật khẩu chứa ít nhất 5 kí tự'
+    		'current-password.required' => 'Mật khẩu là trường bắt buộc',
+            'current-password.min' => 'Mật khẩu chứa ít nhất 5 kí tự',
+            'new-password.required' => 'Mật khẩu mới là trường bắt buộc',
+            'new-password.min' => 'Mật khẩu chứa ít nhất 5 kí tự',
+            'retype-new-password.required' => 'Mời bạn nhập lại mật khẩu',
+            'retype-new-password.min' => 'Mật khẩu chứa ít nhất 5 kí tự'
     	];
     	$validator = Validator::make($request->all(), $rules, $messages);
 
@@ -81,10 +81,11 @@ class ProfileController extends Controller
     		return redirect()->back()->withErrors($validator)->withInput();
     	} else {
 
-            if( Auth::attempt(['password' =>$password])){
-                if($request->newPassword == $request->retyNewPassword){
+            $password = $request->input('current-password');
+            if( Auth::attempt(['password' =>$password, 'username' => Auth::user()->username])){
+                if($request->input('new-password') == $request->input('retype-new-password')){
                     $user = User::where('id', Auth::user()->id)->first();
-                    $user->password = $request->input('password');
+                    $user->password = bcrypt($request->input('new-password'));
                     $user->save();
                     return redirect(route('profile'));
                 } else {

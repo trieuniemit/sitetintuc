@@ -12,6 +12,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct () {
+        $this->middleware('auth');
+    }
     public function index()
     {
         //
@@ -29,6 +32,10 @@ class UserController extends Controller
     public function create()
     {
         //
+        $users = User::all();
+        $currPage = 'users';
+        $title = 'Thêm mới quản trị viên';
+        return view('admin/user', compact('users', 'currPage', 'title'));
     }
 
     /**
@@ -84,6 +91,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $users = User::all();
+        $currPage = 'users';
+        $title = 'Thêm mới quản trị viên';
+        return view('admin/user', compact('users', 'currPage', 'title'));
     }
 }
