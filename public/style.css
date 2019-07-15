@@ -452,7 +452,7 @@ textarea:focus {
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
     border-bottom: none; }
     .header-area .is-sticky #stickyMenu .viral-search-form {
-      top: 100px; }
+      top: 80px; }
       @media only screen and (min-width: 768px) and (max-width: 991px) {
         .header-area .is-sticky #stickyMenu .viral-search-form {
           top: 80px; } }
@@ -630,23 +630,34 @@ textarea:focus {
     flex: 0 0 100%;
     min-width: 100%;
     width: 100%;
-    margin-bottom: 50px; }
+    margin-bottom: 10px; }
+  .page-item.active .page-link {
+    min-width: 25px !important;
+    border-radius: 30px;
+  }
+  .page-item .page-link {
+    line-height: 24px;
+    margin: 0 5px
+  }
+  .pagination {
+    justify-content: center;
+  }
   .single-blog-post.style-3 .post-data {
     margin-left: 0;
     margin-bottom: 40px; }
     .single-blog-post.style-3 .post-data .post-catagory {
       background-color: #e20378;
       width: 88px;
-      height: 25px;
+      height: 20px;
+      position: absolute;
+      margin-top: -30px;
       color: #fff;
       display: block;
       text-transform: uppercase;
-      font-size: 12px;
-      line-height: 26px;
+      font-size: 9px;
+      line-height: 20px;
       text-align: center;
-      margin-bottom: 15px;
-      font-weight: 600;
-      margin-bottom: 20px; }
+      font-weight: 600; }
       .single-blog-post.style-3 .post-data .post-catagory.cat-2 {
         background-color: #6bc045; }
       .single-blog-post.style-3 .post-data .post-catagory.cat-3 {
@@ -661,7 +672,8 @@ textarea:focus {
         -webkit-transition-duration: 500ms;
         transition-duration: 500ms;
         line-height: 1.3;
-        font-size: 21px;
+        margin-bottom: 0;
+        font-size: 16px;
         color: #231f1f; }
         @media only screen and (max-width: 767px) {
           .single-blog-post.style-3 .post-data .post-title h6 {
@@ -669,7 +681,9 @@ textarea:focus {
         .single-blog-post.style-3 .post-data .post-title h6:hover, .single-blog-post.style-3 .post-data .post-title h6:focus {
           color: #e20378; }
     .single-blog-post.style-3 .post-data .post-meta .post-author {
-      font-size: 14px;
+      font-size: 12px;
+      margin-top: 5px;
+      line-height: 15px;
       color: #656565;
       font-weight: 700;
       margin-bottom: 0; }
@@ -746,8 +760,8 @@ textarea:focus {
         .single-blog-post.style-4 .post-data .post-title h6 {
           -webkit-transition-duration: 500ms;
           transition-duration: 500ms;
-          line-height: 1.5;
-          font-size: 18px;
+          line-height: 1.3;
+          font-size: 16px;
           color: #231f1f;
           font-weight: 600; }
           .single-blog-post.style-4 .post-data .post-title h6:hover, .single-blog-post.style-4 .post-data .post-title h6:focus {
@@ -953,7 +967,7 @@ textarea:focus {
   position: relative;
   z-index: 1; }
   .treading-articles-widget h4 {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     font-weight: 600; }
 
 .catagory-featured-post {
