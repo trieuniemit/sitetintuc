@@ -1,8 +1,6 @@
 @extends('admin/index')
 
 @section('content')
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-<script> CKEDITOR.replace('editor1'); </script>
 
 <div class="content">
     <div class="container-fluid">
@@ -91,4 +89,9 @@
       </div>
     </div>
 </div>
+
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script> CKEDITOR.replace('editor1'); </script>
+
 @endsection
+
