@@ -69,3 +69,7 @@
 .clear{
     clear: both;
 }
+.navbar .collapse .navbar-nav .nav-item .nav-link .material-icons, .navbar .collapse .navbar-nav .nav-item .nav-link .fa
+{
+    font-size: 2.5rem;
+}
