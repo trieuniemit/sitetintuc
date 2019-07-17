@@ -26,32 +26,32 @@
                     <table class="table table-hover">
                         <thead class="">
                             <th width="20%">Tiêu đề</th>
-                            <th>Miêu tả</th>
                             <th>Ảnh</th>
                             <th>slug</th>
+                            <th>Miêu tả</th>
                             <th>Loại tin</th>
                             <th>Tác giả</th>
                             <th>Ngày viết</th>
-                            <th>Ngày cập nhập gần nhất</th>
+                            <th>Ngày cập nhập</th>
                         </thead>
                         <tbody>
                         @foreach ($posts as $post)
                             <tr>
                                 <td>{{ $post->title }}</td>
-                                <td width="50%">{{ $post->desc }} </td>
-                                <td><img src="{{ $post->thumb }}" /></td>
-                                <td>{{ $post->slug }}</td>
+                                <td><img width="90px" src="{{ $post->thumb }}" /></td>
+                                <td width= "20%">{{ $post->slug }}</td>
+                                <td>{{ $post->desc }} </td>
                                 <td>{{ $post->category->name }}</td>
                                 <td>{{ $post->user->fullname }}</td>
                                 <td>{{ $post->created_at }}</td>
                                 <td>{{ $post->updated_at }}</td>
                                 <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task" aria-describedby="tooltip535830">
+                                    <a href="{{ route('posts.edit',['id'=> $post->id ]) }}" rel="tooltip" title=""  class="btn btn-primary btn-link btn-sm "  style=" margin:30px 0px" data-original-title="Edit Task" aria-describedby="tooltip535830">
                                         <i class="material-icons">edit</i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+                                    </a>
+                                    <a href="" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
                                         <i class="material-icons">close</i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

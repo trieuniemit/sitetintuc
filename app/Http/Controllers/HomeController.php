@@ -17,7 +17,7 @@ class HomeController extends Controller
         $trendingPosts = $this->getTrendingPosts();
         $postInCats = $this->getPostInCats();
 
-        return view('index', compact('randomPosts', 'lastestPosts', 'trendingPosts'));
+        return view('index', compact('randomPosts', 'lastestPosts', 'trendingPosts', 'postInCats'));
     }
 
     public function getLastestPosts() {
@@ -37,7 +37,7 @@ class HomeController extends Controller
         $randomPosts = Post::limit(5)->orderBy("views", 'DESC')->get();
         $randomPosts->load('category', 'user');
 
-        return $random;
+        return $randomPosts;
     }
 
     public function getPostInCats() {
@@ -48,11 +48,10 @@ class HomeController extends Controller
             $returnArr[] = [
                 'type' => $index++ % 2 == 0? 'type-1': 'type-2',
                 'catname' => $cat->name,
-                'post' => Post::where('category_id', $cat->id)->limit(10)->get()
+                'posts' => Post::where('category_id', $cat->id)->limit(5)->get()
             ];
         }
 
-        dd($returnArr);
         return $returnArr;
     }
 }

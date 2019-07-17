@@ -66,7 +66,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::where('id', $id)->first();
+        $categories = Category::all();
+        $currPage = 'posts';
+        $title = 'thông tin';
+        return view('admin.post_edit', compact('id','post','categories','currPage','title'));
     }
 
     /**
@@ -78,7 +82,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

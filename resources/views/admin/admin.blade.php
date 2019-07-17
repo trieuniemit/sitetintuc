@@ -81,7 +81,7 @@
                     <h4 class="nav-tabs-title">Các bài viết</h4>
                     <ul class="nav nav-tabs fright" data-tabs="tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#profile" data-toggle="tab">
+                            <a class="nav-link active" href="{{route('posts.create')}}" >
                             <i class="material-icons">bug_report</i> Thêm mới
                             <div class="ripple-container"></div>
                             </a>
@@ -111,12 +111,12 @@
                             </td>
                             <td><a href="">{{ $post->title }}</a>
                             <td class="td-actions text-right">
-                                <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                                <i class="material-icons">edit</i>
-                                </button>
-                                <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                                <i class="material-icons">close</i>
-                                </button>
+                                <a href="" title="" class="btn btn-primary btn-link btn-sm" style="margin-right: 10px"  data-original-title="Edit Task"  aria-describedby="tooltip198149">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                                <a href="" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove" >
+                                    <i class="material-icons">close</i>
+                                </a>
                             </td>
                             </tr>
                             <tr>

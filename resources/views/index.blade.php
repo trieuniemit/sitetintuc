@@ -174,52 +174,43 @@
                         </div>
                     </div>
                   </div>
-                <div class="related-articles-">
-                    <h4 style="margin-bottom: 10px">Related Articles</h4>
-                    <div class="row">
-                        <!-- Single Post -->
-                        <div class="col-12">
-                            <div class="single-blog-post style-3 style-5 d-flex align-items-center mb-50">
-                                <!-- Post Thumb -->
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/19.jpg" alt=""></a>
-                                </div>
-                                <!-- Post Data -->
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Finance</a>
-                                    <a href="#" class="post-title">
-                                        <h6>This Is How Notebooks Of An Artist Who Travels Around The World Look</h6>
-                                    </a>
-                                    <div class="post-meta">
-                                        <p class="post-author">By <a href="#">Michael Smithson</a></p>
-                                        <p class="post-date">5 Hours Ago</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Single Post -->
-                        <div class="col-12">
-                            <div class="single-blog-post style-3 style-5 d-flex align-items-center mb-50">
-                                <!-- Post Thumb -->
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/bg-img/20.jpg" alt=""></a>
-                                </div>
-                                <!-- Post Data -->
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Finance</a>
-                                    <a href="#" class="post-title">
-                                        <h6>This Is How Notebooks Of An Artist Who Travels Around The World Look</h6>
-                                    </a>
-                                    <div class="post-meta">
-                                        <p class="post-author">By <a href="#">Michael Smithson</a></p>
-                                        <p class="post-date">5 Hours Ago</p>
+                @foreach ($postInCats as $section)
+                    @if ($section['type'] == 'type-1')
+                        <div class="related-articles-">
+                            <h4 style="margin-bottom: 10px">{{$section['catname']}}</h4>
+                            <div class="row">
+                                @foreach ($section['posts'] as $post)
+                                    <div class="col-12">
+                                        <div class="single-blog-post style-3 style-5 d-flex align-items-center mb-50">
+                                            <!-- Post Thumb -->
+                                            <div class="post-thumb">
+                                                <a href="/{{$post->category->slug}}/{{$post->slug}}.html"><img src="img/bg-img/19.jpg" alt=""></a>
+                                            </div>
+                                            <!-- Post Data -->
+                                            <div class="post-data">
+                                                <a href="/{{$post->category->slug}}" class="post-catagory">{{$post->category->name}}</a>
+                                                <a href="/{{$post->category->slug}}/{{$post->slug}}.html" class="post-title">
+                                                    <h6>{{$post->title}}</h6>
+                                                </a>
+                                                <div class="post-meta">
+                                                    <p class="post-author">Đăng bởi <a href="/author_{{$post->user->username}}.html">{{$post->user->fullname}}</a></p>
+                                                    @php
+                                                        $dffHours = $post->created_at->diffInHours(Carbon\Carbon::now(), false);
+                                                    @endphp
+                                                    <p class="post-date">{{$dffHours<=24? $dffHours.' giờ trước': date('H:i d/m/Y', strtotime($post->created_at))}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
-                    </div>
-                </div>
+                    @else
+                        
+                    @endif
+                @endforeach
+               
             </div>
               @include('sidebar')
           </div>
