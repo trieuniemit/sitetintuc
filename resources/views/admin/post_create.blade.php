@@ -9,16 +9,6 @@
           <div class="card">
             <div class="card-header card-header-primary">
                 <h4 class="card-title fleft">Thêm mới bài viết</h4>
-                {{-- <p class="card-category">Complete your profile</p> 
-                <ul class="nav nav-tabs fright" data-tabs="tabs">
-                    <li class="nav-item ">
-                        <a class="nav-link active" href="/admin/profile/editpassword" data-toggle="tab">
-                        <i class="material-icons">bug_report</i> 
-                        <div class="ripple-container">Thêm mới</div>
-                        </a>
-                    </li>
-                </ul> 
-                <div class="clear"></div> --}}
             </div>
 
             <div class="card-body">
@@ -31,13 +21,15 @@
                       <input type="text" class="form-control" name="title">
                     </div>
                   </div>
+
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label class="bmd-label-floating">Miêu tả</label>
-                      <input type="email" class="form-control" name="desc" >
+                      <label class="bmd-label-floating">Mô tả</label>
+                      <input type="text" class="form-control" name="desc" >
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
@@ -46,6 +38,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
@@ -54,31 +47,40 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label class="bmd-label-floating">Nội dung</label>
-                        {{-- <textarea class="form-control" name="content" ></textarea> --}}
 
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Nội dung</label>
                         <div class="form-group col-md-12">
-                          <textarea name="txtContent" class="form-control " id="editor1"></textarea>
+                          <textarea name="content" class="form-control " id="editor1"></textarea>
                         </div>
-
-                      </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <select class="form-control"  name="category">
-                            @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
-                            @endforeach
-                        </select>
-                        {{-- <input type="text" class="form-control" name="category" > --}}
-                      </div>
                     </div>
                   </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <select class="form-control"  name="category">
+                          @foreach ($categories as $category)
+                              <option value="{{$category->id}}">{{$category->name}}</option>
+                          @endforeach
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <select class="form-control"  name="userID">
+                          @foreach ($users as $user)
+                              <option value="{{$user->id}}">{{$user->username}}</option>
+                          @endforeach
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
                 <button type="submit" class="btn btn-primary pull-right">thêm mới tin</button>
                 
                 <div class="clearfix"></div>

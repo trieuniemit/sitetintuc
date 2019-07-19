@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
@@ -29,10 +30,11 @@ class PostController extends Controller
      */
     public function create()
     {
+        $users = User::all();
         $categories = Category::all();
         $currPage = 'posts';
         $title = 'thông tin';
-        return view('admin.post_create', compact('categories','currPage','title'));
+        return view('admin.post_create', compact('users','categories','currPage','title'));
     }
 
     /**
@@ -43,8 +45,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $newPost = new Post();
-        
+        $newPost = new Post(); // khoi tao post moi.
+        $newPost->title = $request->title;
+        $newPost->desc = $request->desc;
+        $newPost->thumb = $request->thumb;
+        $newPost->slug = $request->slug;
+        $newPost->views = 0;
+        $newPost->content = $request->content;
+        $newPost->category_id = $request->category;
+        $newPost->user_id = $request->userID;
+
+        $newPost->save(); //luu thong tin
+
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -66,11 +79,12 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $users = User::all();
         $post = Post::where('id', $id)->first();
         $categories = Category::all();
         $currPage = 'posts';
         $title = 'thông tin';
-        return view('admin.post_edit', compact('id','post','categories','currPage','title'));
+        return view('admin.post_edit', compact('id','users','post','categories','currPage','title'));
     }
 
     /**
@@ -82,7 +96,19 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $newPost = Post::find($id); // khoi tao post moi.
+        $newPost->title = $request->title;
+        $newPost->desc = $request->desc;
+        $newPost->thumb = $request->thumb;
+        $newPost->slug = $request->slug;
+        $newPost->views = 0;
+        $newPost->content = $request->content;
+        $newPost->category_id = $request->category;
+        $newPost->user_id = $request->userID;
+
+        $newPost->update(); //luu thong tin
+
+        return redirect(route('posts.index'));
     }
 
     /**
