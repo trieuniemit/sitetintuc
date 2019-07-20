@@ -24,7 +24,8 @@ class UserController extends Controller
         $users = User::all();
         $currPage = 'users';
         $title = 'Quản trị viên';
-        return view('admin/user', compact('users', 'currPage', 'title'));
+        $user = User::where('id', Auth::user()->id)->first();
+        return view('admin/user', compact('user','users', 'currPage', 'title'));
     }
 
     /**
@@ -37,8 +38,9 @@ class UserController extends Controller
         //
         $users = User::all();
         $currPage = 'users';
+        $user = User::where('id', Auth::user()->id)->first();
         $title = 'Thêm mới quản trị viên';
-        return view('admin/user-add', compact('users', 'currPage', 'title'));
+        return view('admin/user-add', compact('user','users', 'currPage', 'title'));
     }
 
     /**
@@ -69,12 +71,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, Request $request)
+    public function edit($id)
     {
         //
         $user = User::find($id);
         $currPage = 'users';
         $title = 'Sửa thông tin quản trị viên';
+        return view('admin/user-edit', compact('user', 'currPage', 'title'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+        $user = User::find($id);
+        $currPage = 'users';
         if(Auth::user()->id == 1) {
             // moi duoc sua
             $rules = [
@@ -97,6 +114,7 @@ class UserController extends Controller
             $validator = Validator::make($request->all(), $rules, $messages);
 
             if ($validator->fails()) {
+                // dd($request->all());
                 return redirect()->back()->withErrors($validator)->withInput();
             } else {
                 $user = User::where('id', Auth::user()->id)->first();
@@ -106,22 +124,10 @@ class UserController extends Controller
                 $user->fullname = $request->fullname;
 
                 $user->save();
-                return redirect(route('profile'));
+                return redirect(view('admin/user'));
             }
         }
-        return view('admin/user-edit', compact('user', 'currPage', 'title'));
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

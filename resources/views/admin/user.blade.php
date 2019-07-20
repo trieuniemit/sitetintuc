@@ -31,21 +31,21 @@
                             <th></th>
                         </thead>
                         <tbody>
-                        @foreach ($users as $user)
+                        @foreach ($users as $user2)
                             <tr>
-                                <td>{{ $user->id }} </td>
-                                <td>{{ $user->username }}</td>
-                                <td>{{ $user->email }} </td>
-                                <td>{{ $user->created_at }}</td>
+                                <td>{{ $user2->id }} </td>
+                                <td>{{ $user2->username }}</td>
+                                <td>{{ $user2->email }} </td>
+                                <td>{{ $user2->created_at }}</td>
                                 <td class="td-actions text-right">
                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
-                                        <a class="nav-link active" href="{{ route('users.edit', $user->id) }}">
+                                        <a class="nav-link active" href="{{ route('users.edit', $user2->id )}}">
                                             <i class="material-icons">edit</i>
                                             <div class="ripple-container"></div>
                                         </a>
                                     </button>
                                     <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
-                                        <a class="nav-link active" href="{{ route('users.destroy', $user->id) }}">
+                                        <a class="nav-link active" href="{{ route('users.destroy', $user2->id) }}">
                                             <i class="material-icons">close</i>
                                             <div class="ripple-container"></div>
                                         </a>

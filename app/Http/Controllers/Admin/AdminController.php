@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Post;
+use Auth;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -17,7 +18,8 @@ class AdminController extends Controller
         $title = 'Bảng tin';
         $users = User::all();
         $posts = Post::all();
-        return view('admin/admin', compact('users','posts', 'currPage', 'title'));
+        $user = User::where('id', Auth::user()->id) ->first();
+        return view('admin/admin', compact('user','users','posts', 'currPage', 'title'));
     }
 
     public function postAdmin () {

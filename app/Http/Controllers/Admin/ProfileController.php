@@ -17,7 +17,8 @@ class ProfileController extends Controller
     public function getProfile () {
         $currPage = 'users';
         $title = 'Hồ sơ';
-        $user = User::where('id', Auth::user()->id)->first();
+        $user = User::where('id', Auth::user()->id) ->first();
+        // dd($user);
         return view('admin/profile', compact('user', 'currPage', 'title'));
     }
 

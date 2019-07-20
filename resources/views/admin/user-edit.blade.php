@@ -34,7 +34,8 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="bmd-label-floating">Email</label>
-                      <input type="email" class="form-control" name="email" value="{{ $user->email}}" {{ Auth::user()->id == 1 ? "" : "disabled"}}>
+                      <input type="email" class="form-control" name="email" value="{{ $user->email}}"
+                      {{ Auth::user()->id == 1 ? "" : "disabled"}}>
                     </div>
                   </div>
                 </div>
@@ -42,7 +43,8 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label class="bmd-label-floating">Họ và tên</label>
-                      <input type="text" class="form-control" name="fullname" value="{{ $user->fullname}}" {{ Auth::user()->id == 1 ? "" : "disabled"}}>
+                      <input type="text" class="form-control" name="fullname" value="{{ $user->fullname}}"
+                      {{ Auth::user()->id == 1 ? "" : "disabled"}}>
                     </div>
                   </div>
                 </div>
@@ -50,7 +52,8 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label class="bmd-label-floating">Số điện thoại</label>
-                      <input type="text" class="form-control" name="phone" value="{{ $user->phone}}" {{ Auth::user()->id == 1 ? "" : "disabled"}}>
+                      <input type="text" class="form-control" name="phone" value="{{ $user->phone}}"
+                      {{ Auth::user()->id == 1 ? "" : "disabled"}}>
                     </div>
                   </div>
                 </div>
