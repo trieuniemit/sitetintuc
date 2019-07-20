@@ -21,8 +21,9 @@
             </div>
 
             <div class="card-body">
-            <form method="POST" action="{{ route('users.edit', $user->id) }}">
+            <form method="POST" action="{{ route('users.update', $user->id) }}">
                 @csrf
+                {{ method_field('PUT') }}
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">

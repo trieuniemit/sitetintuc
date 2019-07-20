@@ -18,8 +18,7 @@ class AdminController extends Controller
         $title = 'Bảng tin';
         $users = User::all();
         $posts = Post::all();
-        $user = User::where('id', Auth::user()->id) ->first();
-        return view('admin/admin', compact('user','users','posts', 'currPage', 'title'));
+        return view('admin/admin', compact('users','posts', 'currPage', 'title'));
     }
 
     public function postAdmin () {

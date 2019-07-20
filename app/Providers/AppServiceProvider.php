@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+use Illuminate\Contracts\Auth\Guard;
 use App\Category;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Guard $auth)
     {
         Schema::defaultStringLength(191);
 
@@ -46,5 +46,11 @@ class AppServiceProvider extends ServiceProvider
 
             view()->share(compact('menuItems'));
         }
+
+        view()->composer('*', function($view) use ($auth) {
+            $currentUser = $auth->user();
+            $view->with('loginUser', $currentUser);
+        });
+
     }
 }

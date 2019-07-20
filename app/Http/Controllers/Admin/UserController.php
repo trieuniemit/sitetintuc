@@ -24,8 +24,7 @@ class UserController extends Controller
         $users = User::all();
         $currPage = 'users';
         $title = 'Quản trị viên';
-        $user = User::where('id', Auth::user()->id)->first();
-        return view('admin/user', compact('user','users', 'currPage', 'title'));
+        return view('admin/user', compact('users', 'currPage', 'title'));
     }
 
     /**
@@ -38,9 +37,8 @@ class UserController extends Controller
         //
         $users = User::all();
         $currPage = 'users';
-        $user = User::where('id', Auth::user()->id)->first();
         $title = 'Thêm mới quản trị viên';
-        return view('admin/user-add', compact('user','users', 'currPage', 'title'));
+        return view('admin/user-add', compact('users', 'currPage', 'title'));
     }
 
     /**
@@ -89,9 +87,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        $user = User::find($id);
-        $currPage = 'users';
+        // $currPage = 'users';
         if(Auth::user()->id == 1) {
             // moi duoc sua
             $rules = [
@@ -117,16 +113,18 @@ class UserController extends Controller
                 // dd($request->all());
                 return redirect()->back()->withErrors($validator)->withInput();
             } else {
-                $user = User::where('id', Auth::user()->id)->first();
-
+                // $user = User::where('id', Auth::user()->id)->first();
+                $user = User::find($id);
                 $user->email = $request->email;
                 $user->phone = $request->phone;
                 $user->fullname = $request->fullname;
 
-                $user->save();
-                return redirect(view('admin/user'));
+                $user->update();
+                return redirect(url('admin/users'));
             }
         }
+
+        return redirect(url('admin/users'));
 
     }
 
