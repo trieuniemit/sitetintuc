@@ -42,7 +42,7 @@
                                 <td>{{ $category->created_at }}</td>
                                 <td>{{ $category->updated_at }}</td>
                                 <td class="td-actions text-right">
-                                    <a href="" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" style="margin-right: 10px"  data-original-title="Edit Task"  aria-describedby="tooltip535830">
+                                    <a href="{{route('categories.edit',['id'=>$category->id])}}" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" style="margin-right: 10px"  data-original-title="Edit Task"  aria-describedby="tooltip535830">
                                         <i class="material-icons">edit</i>
                                     </a>
                                     <a href="" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove" >

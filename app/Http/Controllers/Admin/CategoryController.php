@@ -40,7 +40,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newCategory = new Category();
+        $newCategory->name = $request->name;
+        $newCategory->desc = $request->desc;
+        $newCategory->slug = $request->slug;
+        $newCategory->parent= $request->parent;
+
+        $newCategory->save();
+
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -51,7 +59,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+       
+
     }
 
     /**
@@ -62,7 +71,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::where('id',$id)->first();
+        $currPage = 'categories';
+        $title = 'thông tin';
+        return view('admin.category_edit', compact('id','category','currPage','title'));
     }
 
     /**
@@ -74,7 +86,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $newCategory = Category::find($id); // tim doi tuong can update
+        $newCategory->name = $request->name;
+        $newCategory->desc = $request->desc;
+        $newCategory->slug = $request->slug;
+        $newCategory->parent= $request->parent;
+
+        $newCategory->update(); //update thong tin.
+
+        return redirect(route('categories.index'));
     }
 
     /**

@@ -38,7 +38,7 @@
                         @foreach ($posts as $post)
                             <tr>
                                 <td>{{ $post->title }}</td>
-                                <td><img width="90px" src="{{ $post->thumb }}" /></td>
+                                <td><img width="90px" src="{{ url('/uploads/'.$post->thumb) }}" /></td>
                                 <td width= "20%">{{ $post->slug }}</td>
                                 <td>{{ $post->desc }} </td>
                                 <td>{{ $post->category->name }}</td>

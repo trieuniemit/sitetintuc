@@ -96,10 +96,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        //save file to upload folder
+        $file = $request->thumb;
+        $file->move(public_path().'/uploads', $file->getClientOriginalName());
+
+        //update post info
         $newPost = Post::find($id); // khoi tao post moi.
         $newPost->title = $request->title;
         $newPost->desc = $request->desc;
-        $newPost->thumb = $request->thumb;
+        $newPost->thumb = $file->getClientOriginalName();
         $newPost->slug = $request->slug;
         $newPost->views = 0;
         $newPost->content = $request->content;

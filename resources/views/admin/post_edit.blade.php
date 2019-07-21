@@ -12,9 +12,9 @@
             </div>
 
             <div class="card-body">
-            <form method="POST" action="{{ route('posts.update',['id'=>$post->id])}}">
+            <form enctype="multipart/form-data" method="POST" action="{{ route('posts.update',['id'=>$post->id])}}">
                 @csrf
-                {{ method_field('PUT') }})
+                {{ method_field('PUT') }}
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -30,10 +30,17 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  
+                  <div class="col-md-2">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Ảnh</label>
-                        <input type="text" class="form-control" name="thumb" >
+                      <label margin- class="bmd-label-floating">Ảnh</label>
+                      <img width="100px" src="{{url('/uploads/'.$post->thumb)}}" alt="" srcset="">
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="form-group">
+                        <label margin- class="bmd-label-floating">Ảnh thay thế</label>
+                        <input type="file" class="form-control" name="thumb">
                     </div>
                   </div>
                 </div>
@@ -49,9 +56,8 @@
                     <div class="col-md-12">
                         <div class="form-group">
                         <label class="bmd-label-floating">Nội dung</label>
-
                           <div class="form-group col-md-12">
-                            <textarea name="content" class="form-control " id="editor1"></textarea>
+                          <textarea name="content" class="form-control " id="editor1">{{$post->content}}</textarea>
                           </div>
                         
                         </div>
