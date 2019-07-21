@@ -10,9 +10,11 @@
             <div class="card-header card-header-primary">
                 <h4 class="card-title fleft">Thêm mới bài viết</h4>
             </div>
-
+            @if($errors->any())
+              <h2 style="color: white;font-size: 20px;background-color: red;margin: auto;font-weight: bold;padding-left: 10px;padding-right: 10px">{{$errors->first()}}<h2>
+            @endif
             <div class="card-body">
-            <form method="POST" action="{{ route('posts.store') }}">
+            <form enctype="multipart/form-data" method="POST" action="{{ route('posts.store') }}">
                 @csrf
                 <div class="row">
                   <div class="col-md-6">
@@ -33,8 +35,8 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label class="bmd-label-floating">Ảnh</label>
-                      <input type="text" class="form-control" name="thumb" >
+                        <label margin- class="bmd-label-floating">Ảnh</label>
+                        <input type="file" class="form-control" name="thumb">
                     </div>
                   </div>
                 </div>

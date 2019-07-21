@@ -6,6 +6,9 @@ use App\User;
 use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
+use Validator;
+use Illuminate\Support\MessageBag;
+
 
 class PostController extends Controller
 {
@@ -45,19 +48,52 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $newPost = new Post(); // khoi tao post moi.
-        $newPost->title = $request->title;
-        $newPost->desc = $request->desc;
-        $newPost->thumb = $request->thumb;
-        $newPost->slug = $request->slug;
-        $newPost->views = 0;
-        $newPost->content = $request->content;
-        $newPost->category_id = $request->category;
-        $newPost->user_id = $request->userID;
 
-        $newPost->save(); //luu thong tin
+        $rule = [
+            'title' => 'required|max:191',
+            'desc' => 'required|max:65,535',
+            'thumb' => 'required|image',
+            'slug' => 'required|max:65,535',
+            'content' => 'required|max:65,535'
+        ];
 
-        return redirect(route('posts.index'));
+        $messenger = [
+            'title.required' => 'Tiêu đề không được để trống.',
+            'title.max' => 'Tiêu đề không quá 191 ký tự.',
+            'desc.required' => 'Không được để trống phần mô tả.',
+            'desc.max' => 'Mô tả không quá 65,535 ký tự.',
+            'thumb.required' => 'không được để trống phần ảnh',
+            'thumb.image' => 'file ảnh phải có định dạng jpeg, png, bmp, gif hoặc svg',
+            'slug.required' => 'Slug không được để trống.',
+            'slug.max' => 'Slug không quá 65,535 ký tự',
+            'content.required' => 'Nội dung không được để trống.',
+            'content.max' => 'nội dung không quá 65,535 ký tự',
+        ];
+
+        $validator = Validator::make($request->all(),$rule,$messenger);
+
+        if (!$validator->fails()) {
+            $file = $request->thumb;
+            $file->move(public_path().'/uploads/', $file->getClientOriginalName());
+
+            $newPost = new Post(); // khoi tao post moi.
+            $newPost->title = $request->title;
+            $newPost->desc = $request->desc;
+            $newPost->thumb = $file->getClientOriginalName();
+            $newPost->slug = $request->slug;
+            $newPost->views = 0;
+            $newPost->content = $request->content;
+            $newPost->category_id = $request->category;
+            $newPost->user_id = $request->userID;
+
+            $newPost->save(); //luu thong tin
+
+            return redirect(route('posts.index'));
+        } else {
+            return redirect(route('posts.create'))
+                ->withErrors($validator)
+                ->withInput();
+        }
     }
 
     /**
@@ -96,25 +132,51 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rule = [
+            'title' => 'required|max:191',
+            'desc' => 'required|max:65,535',
+            'thumb' => 'required|image',
+            'slug' => 'required|max:65,535',
+            'content' => 'required|max:65,535'
+        ];
 
-        //save file to upload folder
-        $file = $request->thumb;
-        $file->move(public_path().'/uploads', $file->getClientOriginalName());
+        $messenger = [
+            'title.required' => 'Tiêu đề không được để trống.',
+            'title.max' => 'Tiêu đề không quá 191 ký tự.',
+            'desc.required' => 'Không được để trống phần mô tả.',
+            'desc.max' => 'Mô tả không quá 65,535 ký tự.',
+            'thumb.required' => 'không được để trống phần ảnh',
+            'thumb.image' => 'file ảnh phải có định dạng jpeg, png, bmp, gif hoặc svg',
+            'slug.required' => 'Slug không được để trống.',
+            'slug.max' => 'Slug không quá 65,535 ký tự',
+            'content.required' => 'Nội dung không được để trống.',
+            'content.max' => 'nội dung không quá 65,535 ký tự',
+        ];
 
-        //update post info
-        $newPost = Post::find($id); // khoi tao post moi.
-        $newPost->title = $request->title;
-        $newPost->desc = $request->desc;
-        $newPost->thumb = $file->getClientOriginalName();
-        $newPost->slug = $request->slug;
-        $newPost->views = 0;
-        $newPost->content = $request->content;
-        $newPost->category_id = $request->category;
-        $newPost->user_id = $request->userID;
+        $validator = Validator::make($request->all(),$rule,$messenger);
 
-        $newPost->update(); //luu thong tin
+        if (!$validator->fails()) {
+            $file = $request->thumb;
+            $file->move(public_path().'/uploads/', $file->getClientOriginalName());
 
-        return redirect(route('posts.index'));
+            $newPost = new Post(); // khoi tao post moi.
+            $newPost->title = $request->title;
+            $newPost->desc = $request->desc;
+            $newPost->thumb = $file->getClientOriginalName();
+            $newPost->slug = $request->slug;
+            $newPost->views = 0;
+            $newPost->content = $request->content;
+            $newPost->category_id = $request->category;
+            $newPost->user_id = $request->userID;
+
+            $newPost->update(); //luu thong tin
+
+            return redirect(route('posts.index'));
+        } else {
+            return redirect(route('posts.create'))
+                ->withErrors($validator)
+                ->withInput();
+        }
     }
 
     /**
