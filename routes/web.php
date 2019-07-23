@@ -26,4 +26,6 @@ Route::prefix('admin')->group(function () {
     Route::post('/profile/editpassword', 'ProfileController@postEditPassword')->name('editpassword.post');
 });
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/{cat}/{slug}_pid-{postid}.html', 'SiteController@postDetail');
+

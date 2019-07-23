@@ -3,6 +3,7 @@
 namespace App\Providers;
 use Illuminate\Contracts\Auth\Guard;
 use App\Category;
+use App\Post;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -44,7 +45,13 @@ class AppServiceProvider extends ServiceProvider
                 ];
             }
 
-            view()->share(compact('menuItems'));
+            $randomPosts = Post::orderByRaw("RAND()")->get();
+            $randomPosts->load('category', 'user');
+
+            $trendingPosts = Post::limit(5)->orderBy("views", 'DESC')->get();
+            $trendingPosts->load('category', 'user');
+
+            view()->share(compact('menuItems', 'randomPosts', 'trendingPosts'));
         }
 
         view()->composer('*', function($view) use ($auth) {

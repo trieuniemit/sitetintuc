@@ -21,12 +21,12 @@
                 <div class="single-blog-post style-4">
                     <!-- Post Thumb -->
                     <div class="post-thumb">
-                        <a href="#"><img src="{{$post->thumb}}" alt="{{$post->title}}"></a>
+                        <a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html"><img src="{{$post->thumb}}" alt="{{$post->title}}"></a>
                         <span class="serial-number">{{++$index}}.</span>
                     </div>
                     <!-- Post Data -->
                     <div class="post-data">
-                        <a href="/{{$post->category->slug}}/{{$post->slug}}.html" class="post-title">
+                        <a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html" class="post-title">
                             <h6>{{$post->title}}</h6>
                         </a>
                         <div class="post-meta">

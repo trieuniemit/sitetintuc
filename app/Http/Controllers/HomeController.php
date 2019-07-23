@@ -13,31 +13,15 @@ class HomeController extends Controller
         Carbon::setLocale('vi');
         
         $lastestPosts = $this->getLastestPosts();
-        $randomPosts = $this->getRandomPosts();
-        $trendingPosts = $this->getTrendingPosts();
         $postInCats = $this->getPostInCats();
 
-        return view('index', compact('randomPosts', 'lastestPosts', 'trendingPosts', 'postInCats'));
+        return view('index', compact('lastestPosts', 'postInCats'));
     }
 
     public function getLastestPosts() {
-        $lastestPosts = Post::orderBy("created_at", 'DESC')->paginate(15);
+        $lastestPosts = Post::limit(6)->orderBy("created_at", 'DESC')->get();
         $lastestPosts->load('category', 'user');
         return $lastestPosts;
-    }
-
-    public function getRandomPosts() {
-        $randomPosts = Post::orderByRaw("RAND()")->get();
-        $randomPosts->load('category', 'user');
-
-        return $randomPosts;
-    }
-
-    public function getTrendingPosts() {
-        $randomPosts = Post::limit(5)->orderBy("views", 'DESC')->get();
-        $randomPosts->load('category', 'user');
-
-        return $randomPosts;
     }
 
     public function getPostInCats() {

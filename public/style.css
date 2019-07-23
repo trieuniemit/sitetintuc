@@ -384,14 +384,12 @@ textarea:focus {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: #e30a73;
-    background: -webkit-linear-gradient(to right, #e30a73, #feae04);
-    background: linear-gradient(to right, #e30a73, #feae04);
+    background: #00000073;
     z-index: 30000;
     top: 150px;
     left: 0;
-    -webkit-transition-duration: 800ms;
-    transition-duration: 800ms;
+    -webkit-transition-duration: 200ms;
+    transition-duration: 200ms;
     -webkit-transform: scale(0.9) translate3d(0, 0, 0);
     transform: scale(0.9) translate3d(0, 0, 0);
     opacity: 0;
@@ -409,10 +407,10 @@ textarea:focus {
       top: 200px;
       opacity: 0;
       visibility: hidden;
-      -webkit-transition-delay: 500ms;
-      transition-delay: 500ms;
-      -webkit-transition-duration: 700ms;
-      transition-duration: 700ms; }
+      -webkit-transition-delay: 200ms;
+      transition-delay: 200ms;
+      -webkit-transition-duration: 200ms;
+      transition-duration: 200ms; }
       .header-area .viral-search-form form input {
         width: 90%;
         height: 60px;
@@ -710,9 +708,9 @@ textarea:focus {
   .single-blog-post.style-3.style-5 .post-thumb {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    min-width: 50%;
-    width: 50%;
+    flex: 0 0 30%;
+    min-width: 30%;
+    width: 30%;
     margin-bottom: 0;
     margin-right: 15px; }
     @media only screen and (max-width: 767px) {
@@ -1348,3 +1346,6 @@ textarea:focus {
       height: 500px; } }
 
 /*# sourceMappingURL=style.css.map */
+.fb-comment iframe {
+  width: 100% !important
+}
