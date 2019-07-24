@@ -49,7 +49,7 @@
                                     <a href="{{ route('posts.edit',['id'=> $post->id ]) }}" rel="tooltip" title=""  class="btn btn-primary btn-link btn-sm "  style=" margin:30px 0px" data-original-title="Edit Task" aria-describedby="tooltip535830">
                                         <i class="material-icons">edit</i>
                                     </a>
-                                    <a href="" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+                                    <a href="{{ route('posts.destroy',['id'=> $post->id ]) }}" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
                                         <i class="material-icons">close</i>
                                     </a>
                                 </td>
