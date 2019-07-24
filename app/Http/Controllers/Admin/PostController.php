@@ -51,10 +51,10 @@ class PostController extends Controller
 
         $rule = [
             'title' => 'required|max:191',
-            'desc' => 'required|max:65,535',
+            'desc' => 'required|max:65535',
             'thumb' => 'required|image',
-            'slug' => 'required|max:65,535',
-            'content' => 'required|max:65,535'
+            'slug' => 'required|max:65535',
+            'content' => 'required|max:65535'
         ];
 
         $messenger = [
