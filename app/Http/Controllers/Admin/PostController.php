@@ -22,7 +22,7 @@ class PostController extends Controller
         $posts = Post::all();
         $posts->load('category', 'user');
         $currPage = 'posts';
-        $title = 'Quản trị viên';
+        $title = 'Bài viết';
         return view('admin.post', compact('posts','currPage','title'));
     }
 
@@ -36,7 +36,7 @@ class PostController extends Controller
         $users = User::all();
         $categories = Category::all();
         $currPage = 'posts';
-        $title = 'thông tin';
+        $title = 'Thêm bài viết';
         return view('admin.post_create', compact('users','categories','currPage','title'));
     }
 
@@ -104,7 +104,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
     }
 
     /**
@@ -119,7 +120,7 @@ class PostController extends Controller
         $post = Post::where('id', $id)->first();
         $categories = Category::all();
         $currPage = 'posts';
-        $title = 'thông tin';
+        $title = 'Chỉnh sửa bài viết';
         return view('admin.post_edit', compact('id','users','post','categories','currPage','title'));
     }
 
@@ -187,8 +188,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
-        $post->delete();
-        return redirect(route('posts.index'));
+        // $post = Post::find($id);
+        // $post->delete();
+        // return redirect(route('posts.index'));
     }
 }

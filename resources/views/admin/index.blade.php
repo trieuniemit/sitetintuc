@@ -7,7 +7,11 @@
   <link rel="icon" type="image/png" href="/admin-resources/images/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard by Creative Tim
+    @if(isset($title))
+      {{$title}} - Trang quản trị
+    @else
+      Trang quản trị - Trang tin thể thao
+    @endif
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -17,6 +21,7 @@
   <link href="/admin-resources/css/admin/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="/admin-resources/css/admin/demo.css" rel="stylesheet" />
+  <script src="/admin-resources/js/admin/core/jquery.min.js"></script>
 </head>
 
 <body class="">
@@ -35,22 +40,22 @@
                         <p>Bảng tin</p>
                     </a>
                 </li>
+                <li class="nav-item {{$currPage=='posts'?'active': ''}}">
+                    <a class="nav-link" href="{{route('posts.index')}}">
+                        <i class="fa fa-list-alt"></i>
+                        <p>Tin tức</p>
+                    </a>
+                </li>
+                <li class="nav-item {{$currPage=='categories'?'active': ''}}">
+                    <a class="nav-link" href="{{route('categories.index')}}">
+                        <i class="fa fa-folder"></i>
+                        <p>Danh mục tin</p>
+                    </a>
+                </li>
                 <li class="nav-item {{$currPage=='users'?'active': ''}}">
                     <a class="nav-link" href="/admin/users">
                         <i class="material-icons">person</i>
                         <p>Quản trị viên</p>
-                    </a>
-                </li>
-                <li class="nav-item {{$currPage=='lang'?'active': ''}}">
-                <a class="nav-link" href="{{route('categories.index')}}">
-                        <i class="fa fa-list-alt"></i>
-                        <p>Danh mục tin</p>
-                    </a>
-                </li>
-                <li class="nav-item {{$currPage=='lang'?'active': ''}}">
-                    <a class="nav-link" href="{{route('posts.index')}}">
-                        <i class="fa fa-list-alt"></i>
-                        <p>Tin tức</p>
                     </a>
                 </li>
             </ul>
@@ -96,8 +101,6 @@
     </div>
 
 
-
-  <script src="/admin-resources/js/admin/core/jquery.min.js"></script>
   <script src="/admin-resources/js/admin/core/popper.min.js"></script>
   <script src="/admin-resources/js/admin/core/bootstrap-material-design.min.js"></script>
   <script src="/admin-resources/js/admin/plugins/perfect-scrollbar.jquery.min.js"></script>

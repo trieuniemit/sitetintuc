@@ -46,12 +46,12 @@
                                 <td>{{ $post->created_at }}</td>
                                 <td>{{ $post->updated_at }}</td>
                                 <td class="td-actions text-right">
-                                    <a href="{{ route('posts.edit',['id'=> $post->id ]) }}" rel="tooltip" title=""  class="btn btn-primary btn-link btn-sm "  style=" margin:30px 0px" data-original-title="Edit Task" aria-describedby="tooltip535830">
+                                    <a href="{{ route('posts.edit',['id'=> $post->id ]) }}" class="btn btn-primary btn-link btn-sm "  style=" margin:30px 0px" data-original-title="Edit Task" aria-describedby="tooltip535830">
                                         <i class="material-icons">edit</i>
                                     </a>
-                                    <a href="{{ route('posts.destroy',['id'=> $post->id ]) }}" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+                                    <button type="submit" rel="tooltip" data-url="{{ route('posts.destroy',['id'=> $post->id ]) }}" class="btn btn-danger btn-link btn-sm delete">
                                         <i class="material-icons">close</i>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -63,5 +63,23 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('button.delete').click(function(e) {
+            e.preventDefault();
+            _this = this;
+            if(confirm('Bạn có chắc chắn muốn xóa?')) {
+                $.ajax({
+                    url: $(this).attr('data-url'),
+                    success: function(data) {
+                        $(_this).parent().parent().remove();
+                        console.log('complate!');
+                    }
+                })
+            }
+        });
+    });
+</script>
+
 @endsection
 

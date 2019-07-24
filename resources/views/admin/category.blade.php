@@ -45,9 +45,9 @@
                                     <a href="{{route('categories.edit',['id'=>$category->id])}}" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" style="margin-right: 10px"  data-original-title="Edit Task"  aria-describedby="tooltip535830">
                                         <i class="material-icons">edit</i>
                                     </a>
-                                    <a href="" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove" >
+                                    <button type="submit" rel="tooltip" data-url="{{ route('categories.destroy',['id'=> $category->id ]) }}" class="btn btn-danger btn-link btn-sm delete">
                                         <i class="material-icons">close</i>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -59,5 +59,22 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('button.delete').click(function(e) {
+            e.preventDefault();
+            _this = this;
+            if(confirm('Bạn có chắc chắn muốn xóa?')) {
+                $.ajax({
+                    url: $(this).attr('data-url'),
+                    success: function(data) {
+                        $(_this).parent().parent().remove();
+                        console.log('complate!');
+                    }
+                })
+            }
+        });
+    });
+</script>
 @endsection
 

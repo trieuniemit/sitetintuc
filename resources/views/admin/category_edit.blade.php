@@ -26,7 +26,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label class="bmd-label-floating">Miêu tả</label>
+                      <label class="bmd-label-floating">Mô tả</label>
                       <input type="text" class="form-control" name="desc" value="{{$category->desc}}">
                     </div>
                   </div>
@@ -39,14 +39,14 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
                         <label class="bmd-label-floating">Parent</label>
                         <input type="text" class="form-control" name="parent" value="{{$category->parent}}">
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 <button type="submit" class="btn btn-primary pull-right">Sửa tin</button>
                 
                 <div class="clearfix"></div>

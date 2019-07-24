@@ -10,16 +10,14 @@
                 <div class="fleft">
                     <h4 class="card-title">Danh sách quản trị viên</h4>
                 </div>
-                @if($loginUser->id == 1)
-                    <ul class="nav nav-tabs fright" data-tabs="tabs">
-                        <li class="nav-item ">
-                            <a class="nav-link active" href="{{ route('users.create') }}">
-                                <i class="material-icons">person_add</i> Thêm mới
-                                <div class="ripple-container"></div>
-                            </a>
-                        </li>
-                    </ul>
-                @endif
+                <ul class="nav nav-tabs fright" data-tabs="tabs">
+                    <li class="nav-item ">
+                        <a class="nav-link active" href="{{ route('users.create') }}">
+                            <i class="material-icons">person_add</i> Thêm mới
+                            <div class="ripple-container"></div>
+                        </a>
+                    </li>
+                </ul>
                 <div class="clear"></div>
             </div>
             <div class="card-body">
@@ -30,40 +28,27 @@
                             <th>Tên</th>
                             <th>Email</th>
                             <th>Ngày tạo</th>
-                            @if($loginUser->id == 1)
-                                <th></th>
-                            @endif
+                            <th></th>
                         </thead>
                         <tbody>
                         @foreach ($users as $user)
-                            <tr>
+                            <tr id="row-{{$user->id}}">
                                 <td>{{ $user->id }} </td>
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }} </td>
                                 <td>{{ $user->created_at }}</td>
-                                @if($loginUser->id == 1)
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
-                                            @if($loginUser->id == 1)
-                                                <a class="nav-link active" href="{{ route('profile')}}">
-                                                    <i class="material-icons">edit</i>
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                            @else
-                                                <a class="nav-link active" href="{{ route('users.edit', $user->id )}}">
-                                                    <i class="material-icons">edit</i>
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                            @endif
+                                <td class="td-actions text-right">
+                                    <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm">
+                                        <a class="nav-link active" href="{{ route('users.edit', $user->id )}}">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                    </button>
+                                    @if($user->id != 1)
+                                        <button type="submit" rel="tooltip" data-url="{{route('users.destroy', $user->id)}}" class="btn btn-danger btn-link btn-sm delete">
+                                            <i class="material-icons">close</i>
                                         </button>
-                                        <button type="submit" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
-                                            <a class="nav-link active" href="{{ route('users.destroy', $user->id) }}">
-                                                <i class="material-icons">close</i>
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </button>
-                                    </td>
-                                @endif
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -74,5 +59,23 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('button.delete').click(function(e) {
+            e.preventDefault();
+            _this = this;
+            if(confirm('Bạn có chắc chắn muốn xóa?')) {
+                $.ajax({
+                    url: $(this).attr('data-url'),
+                    success: function(data) {
+                        $(_this).parent().parent().remove();
+                        console.log('complate!');
+                    }
+                })
+            }
+        });
+    });
+</script>
+
 @endsection
 

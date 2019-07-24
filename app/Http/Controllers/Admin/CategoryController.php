@@ -16,7 +16,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         $currPage = 'categories';
-        $title = 'Quản trị viên';
+        $title = 'Danh mục tin';
         return view('admin.category', compact('categories','currPage','title'));
     }
 
@@ -27,8 +27,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $currPage = 'Categories';
-        $title = 'Loại tin';
+        $currPage = 'categories';
+        $title = 'Thêm mới danh mục tin';
         return view('admin.category_create', compact('currPage','title'));
     }
 
@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $newCategory->name = $request->name;
         $newCategory->desc = $request->desc;
         $newCategory->slug = $request->slug;
-        $newCategory->parent= $request->parent;
+        $newCategory->parent= 0;
 
         $newCategory->save();
 
@@ -59,8 +59,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-       
-
+        $cat = Category::find($id);
+        $cat->delete();
     }
 
     /**
@@ -73,7 +73,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('id',$id)->first();
         $currPage = 'categories';
-        $title = 'thông tin';
+        $title = 'Chỉnh sửa danh mục tin';
         return view('admin.category_edit', compact('id','category','currPage','title'));
     }
 
@@ -90,7 +90,7 @@ class CategoryController extends Controller
         $newCategory->name = $request->name;
         $newCategory->desc = $request->desc;
         $newCategory->slug = $request->slug;
-        $newCategory->parent= $request->parent;
+        $newCategory->parent= 0;
 
         $newCategory->update(); //update thong tin.
 

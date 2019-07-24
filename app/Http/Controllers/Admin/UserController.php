@@ -106,7 +106,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $userDestroy = User::find($id);
+        $userDestroy->delete();
     }
 
     /**
@@ -159,7 +160,9 @@ class UserController extends Controller
                 $user->email = $request->email;
                 $user->phone = $request->phone;
                 $user->fullname = $request->fullname;
-
+                if(trim($request->password) != '') {
+                    $user->password = bcrypt($request->password);
+                }
                 $user->update();
                 return redirect(url('admin/users'));
             }
@@ -177,9 +180,5 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $userDestroy = User::find($id);
-        $userDestroy->delete();
-        return redirect('/admin/users');
     }
 }
