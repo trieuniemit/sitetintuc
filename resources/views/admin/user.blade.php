@@ -14,7 +14,7 @@
                     <ul class="nav nav-tabs fright" data-tabs="tabs">
                         <li class="nav-item ">
                             <a class="nav-link active" href="{{ route('users.create') }}">
-                                <i class="material-icons">bug_report</i> Thêm mới
+                                <i class="material-icons">person_add</i> Thêm mới
                                 <div class="ripple-container"></div>
                             </a>
                         </li>
@@ -44,12 +44,19 @@
                                 @if($loginUser->id == 1)
                                     <td class="td-actions text-right">
                                         <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
-                                            <a class="nav-link active" href="{{ route('users.edit', $user->id )}}">
-                                                <i class="material-icons">edit</i>
-                                                <div class="ripple-container"></div>
-                                            </a>
+                                            @if($loginUser->id == 1)
+                                                <a class="nav-link active" href="{{ route('profile')}}">
+                                                    <i class="material-icons">edit</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            @else
+                                                <a class="nav-link active" href="{{ route('users.edit', $user->id )}}">
+                                                    <i class="material-icons">edit</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            @endif
                                         </button>
-                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
+                                        <button type="submit" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove">
                                             <a class="nav-link active" href="{{ route('users.destroy', $user->id) }}">
                                                 <i class="material-icons">close</i>
                                                 <div class="ripple-container"></div>

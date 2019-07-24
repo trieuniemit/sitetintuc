@@ -11,19 +11,19 @@
             </div>
 
             <div class="card-body">
-            <form method="POST" action="{{ route('users.create') }}">
+            <form method="POST" action="{{ route('users.store') }}">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Username</label>
-                        <input type="text" class="form-control" name="username">
+                        <input type="text" class="form-control" name="username" value="hshuyhaui">
                     </div>
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Email</label>
-                        <input type="email" class="form-control" name="email">
+                        <input type="email" class="form-control" name="email" value="shhuyhuii@gmail.com">
                     </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="col-md-12">
                     <div class="form-group">
                         <label class="bmd-label-floating">Mật khẩu</label>
-                        <input type="password" name="new-password" class="form-control">
+                        <input type="password" name="newPassword" class="form-control" value="12345">
                     </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <div class="col-md-12">
                     <div class="form-group">
                         <label class="bmd-label-floating">Nhập lại mật khẩu</label>
-                        <input type="password" name="retype-new-password" class="form-control">
+                        <input type="password" name="retypeNewPassword" class="form-control" value="12345">
                     </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                     <div class="col-md-12">
                     <div class="form-group">
                         <label class="bmd-label-floating">Họ và tên</label>
-                        <input type="text" class="form-control" name="fullname">
+                        <input type="text" class="form-control" name="fullname" value="huy ábasjdbdjb">
                     </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                     <div class="col-md-12">
                     <div class="form-group">
                         <label class="bmd-label-floating">Số điện thoại</label>
-                        <input type="text" class="form-control" name="phone">
+                        <input type="text" class="form-control" name="phone" value="0384255585">
                     </div>
                     </div>
                 </div>

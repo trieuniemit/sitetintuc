@@ -82,7 +82,7 @@
                     <ul class="nav nav-tabs fright" data-tabs="tabs">
                         <li class="nav-item">
                             <a class="nav-link active" href="{{route('posts.create')}}" >
-                            <i class="material-icons">bug_report</i> Thêm mới
+                            <i class="material-icons">person_add</i> Thêm mới
                             <div class="ripple-container"></div>
                             </a>
                         </li>
