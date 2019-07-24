@@ -51,23 +51,23 @@ class PostController extends Controller
 
         $rule = [
             'title' => 'required|max:191',
-            'desc' => 'required|max:65,535',
+            'desc' => 'required|max:65535',
             'thumb' => 'required|image',
-            'slug' => 'required|max:65,535',
-            'content' => 'required|max:65,535'
+            'slug' => 'required|max:65535',
+            'content' => 'required|max:65535'
         ];
 
         $messenger = [
             'title.required' => 'Tiêu đề không được để trống.',
             'title.max' => 'Tiêu đề không quá 191 ký tự.',
             'desc.required' => 'Không được để trống phần mô tả.',
-            'desc.max' => 'Mô tả không quá 65,535 ký tự.',
+            'desc.max' => 'Mô tả không quá 65535 ký tự.',
             'thumb.required' => 'không được để trống phần ảnh',
             'thumb.image' => 'file ảnh phải có định dạng jpeg, png, bmp, gif hoặc svg',
             'slug.required' => 'Slug không được để trống.',
-            'slug.max' => 'Slug không quá 65,535 ký tự',
+            'slug.max' => 'Slug không quá 65535 ký tự',
             'content.required' => 'Nội dung không được để trống.',
-            'content.max' => 'nội dung không quá 65,535 ký tự',
+            'content.max' => 'nội dung không quá 65535 ký tự',
         ];
 
         $validator = Validator::make($request->all(),$rule,$messenger);
@@ -135,23 +135,23 @@ class PostController extends Controller
     {
         $rule = [
             'title' => 'required|max:191',
-            'desc' => 'required|max:65,535',
+            'desc' => 'required|max:65535',
             'thumb' => 'required|image',
-            'slug' => 'required|max:65,535',
-            'content' => 'required|max:65,535'
+            'slug' => 'required|max:65535',
+            'content' => 'required|max:65535'
         ];
 
         $messenger = [
             'title.required' => 'Tiêu đề không được để trống.',
             'title.max' => 'Tiêu đề không quá 191 ký tự.',
             'desc.required' => 'Không được để trống phần mô tả.',
-            'desc.max' => 'Mô tả không quá 65,535 ký tự.',
+            'desc.max' => 'Mô tả không quá 65535 ký tự.',
             'thumb.required' => 'không được để trống phần ảnh',
             'thumb.image' => 'file ảnh phải có định dạng jpeg, png, bmp, gif hoặc svg',
             'slug.required' => 'Slug không được để trống.',
-            'slug.max' => 'Slug không quá 65,535 ký tự',
+            'slug.max' => 'Slug không quá 65535 ký tự',
             'content.required' => 'Nội dung không được để trống.',
-            'content.max' => 'nội dung không quá 65,535 ký tự',
+            'content.max' => 'nội dung không quá 65535 ký tự',
         ];
 
         $validator = Validator::make($request->all(),$rule,$messenger);
