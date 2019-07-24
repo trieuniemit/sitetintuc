@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Viral Story - Viral News Magazine Template</title>
+    <title>Tin tức thể thao</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{url('img/core-img/favicon.ico')}}">
@@ -32,11 +32,11 @@
                             <!-- Breaking News Area -->
                             <div class="top-breaking-news-area">
                                 <div id="breakingNewsTicker" class="ticker">
-                                    <ul>
+                                    <!-- <ul>
                                         <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
                                         <li><a href="#">Welcome to Colorlib Family.</a></li>
                                         <li><a href="#">Nam eu metus sitsit amet, consec!</a></li>
-                                    </ul>
+                                    </ul> -->
                                 </div>
                             </div>
 
@@ -93,8 +93,8 @@
 
                                 <!-- Search Form -->
                                 <div class="viral-search-form">
-                                    <form id="search" action="#" method="get">
-                                        <input type="text" name="search-terms" placeholder="Enter your keywords ...">
+                                    <form id="search" action="/search" method="get">
+                                        <input type="text" name="q" placeholder="Nhập từ khóa ...">
                                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                     </form>
                                 </div>
@@ -113,9 +113,6 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
-    @if(\Request::route()->getName() == 'home')
-        @include('home_slider')
-    @endif
     
   <div class="viral-story-blog-post section-padding-0-50" style="margin-top: 20px;">
       <div class="container">

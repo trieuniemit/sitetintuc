@@ -28,6 +28,7 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/{cat}/{slug}_pid-{postid}.html', 'SiteController@postDetail');
+Route::get('/search', 'SiteController@search');
 Route::get('/author_{author}', 'SiteController@author');
 Route::get('/{cat}', 'SiteController@category');
 

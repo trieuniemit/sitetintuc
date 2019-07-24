@@ -11,6 +11,9 @@ class SiteController extends Controller
     public function postDetail($catSlug, $slug, $postid) {
         $post = Post::where('slug', $slug)->first();
         $post->load('category');
+        $post->views += 1;
+        $post->update();
+        
         $relatedPosts = Post::where('category_id', $post->category_id)->orderByRaw('RAND()')->limit(2)->get();
         return view('post_detail', compact('post', 'relatedPosts'));
     }
@@ -25,5 +28,14 @@ class SiteController extends Controller
         $user = User::where('username', $username)->first();
         $posts = Post::where('user_id', $user->id)->paginate(10);
         return view('author', compact('posts', 'user'));
+    }
+
+    public function search(Request $request) {
+        if(isset($request->q)) {
+            $query = $request->q;
+            $posts = Post::where('title', 'LIKE', "%$query%")->paginate(10);
+            return view('search', compact('posts', 'query'));
+        }
+        return redirect('/');
     }
 }
