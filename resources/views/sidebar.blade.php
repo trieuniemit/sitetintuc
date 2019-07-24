@@ -21,7 +21,7 @@
                 <div class="single-blog-post style-4">
                     <!-- Post Thumb -->
                     <div class="post-thumb">
-                        <a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html"><img src="{{$post->thumb}}" alt="{{$post->title}}"></a>
+                        <a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html"><img src="/uploads/{{$post->thumb}}" alt="{{$post->title}}"></a>
                         <span class="serial-number">{{++$index}}.</span>
                     </div>
                     <!-- Post Data -->

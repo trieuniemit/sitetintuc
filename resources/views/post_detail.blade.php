@@ -8,7 +8,7 @@
     <!-- Single Featured Post -->
     <div class="single-blog-post-details">
         <div class="post-thumb">
-            <img style="width: 100%;" src="{{$post->thumb}}" alt="">
+            <img style="width: 100%;" src="/uploads/{{$post->thumb}}" alt="">
         </div>
         <div class="post-data">
             <a href="/{{$post->category->slug}}" class="post-catagory">{{$post->category->name}}</a>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="post-content">
-                    {{$post->content}}
+                    {{html_entity_decode($post->content)}}
                 </div>
                 <div class="fb-comment" style="margin: 40px -5px 20px; width: 100%">
                     <div class="fb-comments" data-href="{{Request::url()}}" data-width="100%" data-numposts="5"></div>
@@ -54,7 +54,7 @@
                     <div class="single-blog-post style-3 style-5 d-flex align-items-center mb-30">
                         <!-- Post Thumb -->
                         <div class="post-thumb">
-                            <a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html"><img src="{{$post->thumb}}" alt=""></a>
+                            <a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html"><img src="/uploads/{{$post->thumb}}" alt=""></a>
                         </div>
                         <!-- Post Data -->
                         <div class="post-data">

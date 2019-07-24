@@ -11,7 +11,7 @@
             <div class="single-blog-post style-3">
                 <!-- Post Thumb -->
                 <div class="post-thumb">
-                    <a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html"><img src="{{$post->thumb}}" alt="{{$post->title}}"></a>
+                    <a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html"><img src="/uploads/{{$post->thumb}}" alt="{{$post->title}}"></a>
                 </div>
                 <!-- Post Data -->
                 <div class="post-data">
@@ -43,7 +43,7 @@
                             <div class="single-blog-post style-3 style-5 d-flex align-items-center mb-30">
                                 <!-- Post Thumb -->
                                 <div class="post-thumb">
-                                    <a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html"><img src="{{$post->thumb}}" alt=""></a>
+                                    <a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html"><img src="/uploads/{{$post->thumb}}" alt=""></a>
                                 </div>
                                 <!-- Post Data -->
                                 <div class="post-data">
