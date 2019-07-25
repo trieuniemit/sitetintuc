@@ -1,5 +1,5 @@
 <!-- Sidebar Area -->
-<div class="col-12 col-lg-4">
+<div class="col-12 col-md-3">
     <div class="sidebar-area">
         <!-- Newsletter Widget -->
         {{-- <div class="newsletter-widget mb-70">
@@ -13,11 +13,11 @@
 
         <!-- Trending Articles Widget -->
         <div class="treading-articles-widget mb-70">
-            <h4>Bài viết được quan tâm</h4>
+            <h4 style="font-size: 20px">Bài viết được quan tâm</h4>
 
             <!-- Single Trending Articles -->
             @php($index = 0)
-            @foreach($trendingPosts as $post)    
+            @foreach($trendingPosts as $post)
                 <div class="single-blog-post style-4">
                     <!-- Post Thumb -->
                     <div class="post-thumb">

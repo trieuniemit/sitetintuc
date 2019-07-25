@@ -7,7 +7,7 @@
     <div class="row">
         @foreach ($lastestPosts as $post)
         <!-- Single Blog Post -->
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-md-4 col-xs-6">
             <div class="single-blog-post style-3">
                 <!-- Post Thumb -->
                 <div class="post-thumb">

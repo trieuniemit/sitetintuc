@@ -7,7 +7,7 @@
         <h1 style="font-size: 28px; margin: 10px 0 20px">Tác giả: {{$user->fullname}}</h1>
     </div>
     @foreach($posts as $post)
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-md-4 col-xs-6">
         <div class="single-blog-post style-3">
             <!-- Post Thumb -->
             <div class="post-thumb">

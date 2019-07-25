@@ -9,7 +9,13 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Tin tức thể thao</title>
+    <title>
+        @if(isset($title))
+            {{$title}} - Trang quản trị
+        @else
+            Tin tức thể thao
+        @endif
+    </title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{url('img/core-img/favicon.ico')}}">
@@ -113,12 +119,12 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
-    
+
   <div class="viral-story-blog-post section-padding-0-50" style="margin-top: 20px;">
       <div class="container">
           <div class="row">
               <!-- Blog Posts Area -->
-              <div class="col-12 col-lg-8">
+              <div class="col-12 col-md-9">
                 @yield('main-section')
             </div>
               @include('sidebar')
