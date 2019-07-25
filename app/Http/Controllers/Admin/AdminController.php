@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Post;
-use Auth;
-use Illuminate\Http\Request;
+use DB;
 
 class AdminController extends Controller
 {
@@ -16,9 +15,16 @@ class AdminController extends Controller
     public function getAdmin (){
         $currPage = 'dashboard';
         $title = 'Bảng tin';
-        $users = User::all();
+
+        $countByUser =  DB::select("SELECT user_id, COUNT(user_id) as postcount FROM `posts` GROUP BY `user_id` ORDER BY postcount desc limit 5");
+        $usersRank = [];
+        foreach($countByUser as $c) {
+            $crrUser = User::find($c->user_id);
+            $crrUser->postCount = $c->postcount;
+            $usersRank[] = $crrUser;
+        }
         $posts = Post::all();
-        return view('admin/admin', compact('users','posts', 'currPage', 'title'));
+        return view('admin/admin', compact('usersRank','posts', 'currPage', 'title'));
     }
 
     public function postAdmin () {

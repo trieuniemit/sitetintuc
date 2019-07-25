@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Category;
 use App\Post;
+use Auth;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\MessageBag;
@@ -84,7 +85,7 @@ class PostController extends Controller
             $newPost->views = 0;
             $newPost->content = $request->content;
             $newPost->category_id = $request->category;
-            $newPost->user_id = $request->userID;
+            $newPost->user_id = Auth::get()->id;
 
             $newPost->save(); //luu thong tin
 
@@ -104,6 +105,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        dd('111');
         $post = Post::find($id);
         $post->delete();
     }
@@ -136,7 +138,7 @@ class PostController extends Controller
         $rule = [
             'title' => 'required|max:191',
             'desc' => 'required|max:65535',
-            'thumb' => 'required|image',
+            'thumb' => 'image',
             'slug' => 'required|max:65535',
             'content' => 'required|max:65535'
         ];
@@ -146,7 +148,6 @@ class PostController extends Controller
             'title.max' => 'Tiêu đề không quá 191 ký tự.',
             'desc.required' => 'Không được để trống phần mô tả.',
             'desc.max' => 'Mô tả không quá 65535 ký tự.',
-            'thumb.required' => 'không được để trống phần ảnh',
             'thumb.image' => 'file ảnh phải có định dạng jpeg, png, bmp, gif hoặc svg',
             'slug.required' => 'Slug không được để trống.',
             'slug.max' => 'Slug không quá 65535 ký tự',
@@ -157,24 +158,25 @@ class PostController extends Controller
         $validator = Validator::make($request->all(),$rule,$messenger);
 
         if (!$validator->fails()) {
-            $file = $request->thumb;
-            $file->move(public_path().'/uploads/', $file->getClientOriginalName());
+            $newPost = Post::findOrFail($id); // khoi tao post moi.
+            // dd($request->thumb);
+            if($request->thumb) {
+                $file = $request->thumb;
+                $file->move(public_path().'/uploads/', $file->getClientOriginalName());
+                $newPost->thumb = $file->getClientOriginalName();
+            }
 
-            $newPost = new Post(); // khoi tao post moi.
             $newPost->title = $request->title;
             $newPost->desc = $request->desc;
-            $newPost->thumb = $file->getClientOriginalName();
             $newPost->slug = $request->slug;
-            $newPost->views = 0;
             $newPost->content = $request->content;
             $newPost->category_id = $request->category;
-            $newPost->user_id = $request->userID;
-
+            $newPost->user_id = Auth::user()->id;
             $newPost->update(); //luu thong tin
 
             return redirect(route('posts.index'));
         } else {
-            return redirect(route('posts.create'))
+            return redirect("/admin/posts/$id/edit")
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -188,8 +190,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        // $post = Post::find($id);
-        // $post->delete();
-        // return redirect(route('posts.index'));
+        $post = Post::find($id);
+        $post->delete();
+        return redirect(route('posts.index'));
     }
 }

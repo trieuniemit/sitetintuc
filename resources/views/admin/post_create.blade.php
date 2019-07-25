@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-group">
                       <select class="form-control"  name="category">
                           @foreach ($categories as $category)
@@ -71,20 +71,10 @@
                       </select>
                     </div>
                   </div>
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <select class="form-control"  name="userID">
-                          @foreach ($users as $user)
-                              <option value="{{$user->id}}">{{$user->username}}</option>
-                          @endforeach
-                      </select>
-                    </div>
-                  </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary pull-right">thêm mới tin</button>
-                
+
                 <div class="clearfix"></div>
               </form>
             </div>

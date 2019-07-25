@@ -20,7 +20,9 @@ class UserController extends Controller
     }
     public function index()
     {
-        //
+        if(Auth::user()->id != 1)
+            return redirect('/admin');
+
         $users = User::all();
         $currPage = 'users';
         $title = 'Quản trị viên';
@@ -34,7 +36,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::user()->id != 1)
+            return redirect('/admin');
+
         $users = User::all();
         $currPage = 'users';
         $title = 'Thêm mới quản trị viên';
@@ -49,7 +53,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Auth::user()->id != 1)
+            return redirect('/admin');
+
         $rule = [
             'username' => 'required|min:5',
             'email' => 'required|email',
@@ -106,6 +112,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        if(Auth::user()->id != 1)
+            return redirect('/admin');
+
         $userDestroy = User::find($id);
         $userDestroy->delete();
     }
@@ -118,7 +127,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(Auth::user()->id != 1)
+            return redirect('/admin');
+
         $user = User::find($id);
         $currPage = 'users';
         $title = 'Sửa thông tin quản trị viên';
@@ -134,6 +145,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(Auth::user()->id != 1)
+            return redirect('/admin');
+
         if(Auth::user()->id == 1) {
             $rules = [
                 'email' => 'required|email',
@@ -144,7 +158,7 @@ class UserController extends Controller
                 'email.required' => 'Email là trường bắt buộc',
                 'email.email' => 'Email chưa đúng định dạng',
                 'phone.required' => 'Số điện thoại là trường bắt buộc',
-                'phone.email' => 'Số điện thoại chưa đúng định dạng',
+                'phone.regex' => 'Số điện thoại phải bắt đầu bằng số 0 và gồm 10 chữ số.',
                 'fullname.required' => 'Họ và tên là trường bắt buộc',
                 'fullname.min' => 'Họ và tên chứa ít nhất 4 kí tự',
                 'fullname.max' => 'Họ và tên chỉ chứa tối đa 33 kí tự'

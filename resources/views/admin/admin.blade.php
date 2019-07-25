@@ -3,8 +3,8 @@
 @section('content')
 <div class="content">
     <div class="container-fluid">
-        <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        {{-- <div class="row"> --}}
+        {{-- <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
                 <div class="card-icon">
@@ -71,7 +71,7 @@
             </div>
             </div>
         </div>
-        </div>
+        </div> --}}
         <div class="row">
         <div class="col-lg-6 col-md-12">
             <div class="card">
@@ -97,26 +97,15 @@
                     <table class="table">
                     <tbody>
                         <tr>
-
                         @foreach ($posts as $post)  {{--xuat bai title ra trang--}}
-                            <td>
-                                <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                    <span class="form-check-sign">
-                                    <span class="check"></span>
-                                    </span>
-                                </label>
-                                </div>
-                            </td>
-                            <td><a href="">{{ $post->title }}</a>
+                            <td><a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html">{{ $post->title }}</a>
                             <td class="td-actions text-right">
-                                <a href="" title="" class="btn btn-primary btn-link btn-sm" style="margin-right: 10px"  data-original-title="Edit Task"  aria-describedby="tooltip198149">
+                            <a href="{{route('posts.edit', ['id' => $post->id])}}" class="btn btn-primary btn-link btn-sm" style="margin-right: 10px"  data-original-title="Edit Task"  aria-describedby="tooltip198149">
                                     <i class="material-icons">edit</i>
                                 </a>
-                                <a href="" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Remove" >
+                                <button type="submit" rel="tooltip" data-url="{{ route('posts.destroy',['id'=> $post->id ]) }}" class="btn btn-danger btn-link btn-sm delete">
                                     <i class="material-icons">close</i>
-                                </a>
+                                </button>
                             </td>
                             </tr>
                             <tr>
@@ -132,7 +121,7 @@
         <div class="col-lg-6 col-md-12">
             <div class="card">
             <div class="card-header card-header-warning">
-                <h4 class="card-title">Danh sách 3 quản trị viên có bài đăng nhiều nhất</h4>
+                <h4 class="card-title">Danh sách quản trị viên có bài đăng nhiều nhất</h4>
                 {{-- <p class="card-category">New employees on 15th September, 2016</p> --}}
             </div>
             <div class="card-body table-responsive">
@@ -144,11 +133,11 @@
                     <th>Số bài viết</th>
                 </thead>
                 <tbody>
-                @foreach ($users as $user)
+                @foreach ($usersRank as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->username }}</td>
-                        <td>3</td>
+                        <td>{{$user->postCount}}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -159,5 +148,23 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('button.delete').click(function(e) {
+            e.preventDefault();
+            _this = this;
+            if(confirm('Bạn có chắc chắn muốn xóa?')) {
+                $.ajax({
+                    url: $(this).attr('data-url'),
+                    success: function(data) {
+                        $(_this).parent().parent().remove();
+                        console.log('complate!');
+                    }
+                })
+            }
+        });
+    });
+</script>
 
 @endsection

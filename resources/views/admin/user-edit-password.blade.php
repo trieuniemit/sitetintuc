@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="card-body">
-                <form method="POST" action="{{ route('editpassword.post')}}">
+                <form method="POST" action="{{ route('')}}">
                     @csrf
                         <div class="row">
                             <div class="col-md-12">

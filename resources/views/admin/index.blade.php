@@ -52,12 +52,14 @@
                         <p>Danh mục tin</p>
                     </a>
                 </li>
-                <li class="nav-item {{$currPage=='users'?'active': ''}}">
-                    <a class="nav-link" href="/admin/users">
-                        <i class="material-icons">person</i>
-                        <p>Quản trị viên</p>
-                    </a>
-                </li>
+                @if($loginUser->id == 1)
+                    <li class="nav-item {{$currPage=='users'?'active': ''}}">
+                        <a class="nav-link" href="/admin/users">
+                            <i class="material-icons">person</i>
+                            <p>Quản trị viên</p>
+                        </a>
+                    </li>
+                @endif
             </ul>
             </div>
         </div>
