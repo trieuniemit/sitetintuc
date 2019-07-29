@@ -3,22 +3,22 @@
 @section('content')
 <div class="content">
     <div class="container-fluid">
-        {{-- <div class="row"> --}}
-        {{-- <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
                 <div class="card-icon">
-                <i class="material-icons">content_copy</i>
+                <i class="fa fa-list-alt"></i>
                 </div>
-                <p class="card-category">Used Space</p>
-                <h3 class="card-title">49/50
-                <small>GB</small>
+                <p class="card-category">Số bài viết</p>
+                <h3 class="card-title">49
+                <small>bài</small>
                 </h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                <i class="material-icons text-danger">warning</i>
-                <a href="#pablo">Get More Space...</a>
+                <i class="material-icons text-danger">add</i>
+                <a href="/admin/posts/create">Viết bài</a>
                 </div>
             </div>
             </div>
@@ -27,14 +27,15 @@
             <div class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
                 <div class="card-icon">
-                <i class="material-icons">store</i>
+                <i class="fa fa-folder"></i>
                 </div>
-                <p class="card-category">Revenue</p>
-                <h3 class="card-title">$34,245</h3>
+                <p class="card-category">Số danh mục</p>
+                <h3 class="card-title">100</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                <i class="material-icons">date_range</i> Last 24 Hours
+                    <i class="material-icons text-danger">add</i>
+                    <a href="/admin/categories/create">Thêm mới</a>
                 </div>
             </div>
             </div>
@@ -43,14 +44,15 @@
             <div class="card card-stats">
             <div class="card-header card-header-danger card-header-icon">
                 <div class="card-icon">
-                <i class="material-icons">info_outline</i>
+                <i class="material-icons">person</i>
                 </div>
-                <p class="card-category">Fixed Issues</p>
-                <h3 class="card-title">75</h3>
+                <p class="card-category">Người dùng</p>
+                <h3 class="card-title">5</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
-                <i class="material-icons">local_offer</i> Tracked from Github
+                <i class="material-icons">add</i> 
+                <a href="/admin/users/create">Thêm người dùng</a>
                 </div>
             </div>
             </div>
@@ -71,18 +73,18 @@
             </div>
             </div>
         </div>
-        </div> --}}
+        </div>
         <div class="row">
         <div class="col-lg-6 col-md-12">
             <div class="card">
             <div class="card-header card-header-tabs card-header-primary">
                 <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
-                    <h4 class="nav-tabs-title">Các bài viết</h4>
+                    <h4 class="nav-tabs-title">Bài viết được quan tâm</h4>
                     <ul class="nav nav-tabs fright" data-tabs="tabs">
                         <li class="nav-item">
                             <a class="nav-link active" href="{{route('posts.create')}}" >
-                            <i class="material-icons">person_add</i> Thêm mới
+                            <i class="material-icons">add</i> Thêm mới
                             <div class="ripple-container"></div>
                             </a>
                         </li>
@@ -97,15 +99,17 @@
                     <table class="table">
                     <tbody>
                         <tr>
-                        @foreach ($posts as $post)  {{--xuat bai title ra trang--}}
+                        @foreach ($posts as $post)
                             <td><a href="/{{$post->category->slug}}/{{$post->slug}}_pid-{{$post->id}}.html">{{ $post->title }}</a>
                             <td class="td-actions text-right">
-                            <a href="{{route('posts.edit', ['id' => $post->id])}}" class="btn btn-primary btn-link btn-sm" style="margin-right: 10px"  data-original-title="Edit Task"  aria-describedby="tooltip198149">
-                                    <i class="material-icons">edit</i>
-                                </a>
-                                <button type="submit" rel="tooltip" data-url="{{ route('posts.destroy',['id'=> $post->id ]) }}" class="btn btn-danger btn-link btn-sm delete">
-                                    <i class="material-icons">close</i>
-                                </button>
+                                @if($loginUser->id == $post->user_id || $loginUser->role_id <=2 )
+                                    <a href="{{ route('posts.edit',['id'=> $post->id ]) }}">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                    <a href="#" data-url="{{ route('posts.destroy',['id'=> $post->id ]) }}" class="delete">
+                                        <i class="material-icons">close</i>
+                                    </a>
+                                @endif
                             </td>
                             </tr>
                             <tr>
@@ -151,7 +155,7 @@
 
 <script>
     $(document).ready(function() {
-        $('button.delete').click(function(e) {
+        $('.delete').click(function(e) {
             e.preventDefault();
             _this = this;
             if(confirm('Bạn có chắc chắn muốn xóa?')) {
