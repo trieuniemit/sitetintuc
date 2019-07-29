@@ -1,166 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- saved from url=(0033)https://colorlib.com/newspaper-x/ -->
+<html lang="en-US">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="profile" href="https://gmpg.org/xfn/11">
+      <title>
+          <?php if(isset($title)) echo $title.' - '; ?>Tin tức thể thao cập nhật 24/7
+      </title>
+      <link rel="stylesheet" id="wp-block-library-css" href="/css/style.min.css" type="text/css" media="all">
+      <!-- <link rel="stylesheet" id="contact-form-7-css" href="/css/styles.css" type="text/css" media="all"> -->
+      <link crossorigin="anonymous" rel="stylesheet" id="newspaper-x-fonts-css" href="/css/font-web.css" type="text/css" media="all">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+      <link rel="stylesheet" id="bootstrap-css" href="/css/bootstrap.min.css" type="text/css" media="all">
+      <link rel="stylesheet" id="bootstrap-theme-css" href="/css/bootstrap-theme.min.css" type="text/css" media="all">
+      <!-- <link rel="stylesheet" id="newspaper-x-style-css" href="/css/style.css" type="text/css" media="all"> -->
+      <link rel="stylesheet" id="newspaper-x-stylesheet-css" href="/css/style-web.css" type="text/css" media="all">
+      <style id="newspaper-x-stylesheet-inline-css" type="text/css">
+         .newspaper-x-header-widget-area{
+         background: #0e0e11;
+         }
+      </style>
+      <link rel="stylesheet" id="owl.carousel-css" href="/css/owl.carousel.min.css" type="text/css" media="all">
+      <link rel="stylesheet" id="owl.carousel-theme-css" href="/css/owl.theme.default.css" type="text/css" media="all">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <script type="text/javascript" src="/js/frontend.min.js"></script>
+      <script type="text/javascript" src="/js/jquery.js"></script>
+      <script type="text/javascript" src="/js/jquery-migrate.min.js"></script>
+      <script type="text/javascript" src="/js/blazy.min.js"></script>
 
-    <!-- Title -->
-    <title>
-        @if(isset($title))
-            {{$title}} - Trang quản trị
-        @else
-            Tin tức thể thao
-        @endif
-    </title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="{{url('img/core-img/favicon.ico')}}">
-
-    <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="{{url('style.css')}}">
-
-</head>
-
-<body>
-    <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-
-        <!-- Top Header Area -->
-        <div class="top-header-area">
+   <body class="home page-template-default page page-id-6 wp-custom-logo">
+      <div id="page" class="site">
+         <div class="top-header">
             <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="top-header-content d-flex align-items-center justify-content-between">
-                            <!-- Breaking News Area -->
-                            <div class="top-breaking-news-area">
-                                <div id="breakingNewsTicker" class="ticker">
-                                    <!-- <ul>
-                                        <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                        <li><a href="#">Welcome to Colorlib Family.</a></li>
-                                        <li><a href="#">Nam eu metus sitsit amet, consec!</a></li>
-                                    </ul> -->
-                                </div>
-                            </div>
-
-                            <!-- Social Info Area-->
-                            <div class="top-social-info-area">
-                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               <div class="row">
+                  <div class="col-lg-8">
+                     <section class="newspaper-x-news-ticker">
+                        <span class="newspaper-x-module-title">
+                        <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-bullhorn fa-stack-1x fa-inverse"></i>
+                        </span>Tin mới</span>
+                        <ul class="newspaper-x-news-carousel owl-carousel owl-theme owl-loaded owl-drag">
+                            @foreach($lastestPosts as $p)
+                                <li class="item">
+                                    <a href="{{get_post_link($p)}}">{{$p->title}}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                     </section>
+                  </div>
+                  <div class="col-lg-4">
+                     <form role="search" method="get" id="searchform" action="/search">
+                        <label>
+                        <span class="screen-reader-text">Tìm kiếm:</span>
+                        <input class="search-field" placeholder="Từ khóa..." value="" name="q" type="search">
+                        </label>
+                        <button class="search-submit" value="Tìm" type="submit"><span class="fa fa-search"></span></button>
+                     </form>
+                  </div>
+               </div>
             </div>
-        </div>
-
-        <!-- Navbar Area -->
-        <div class="viral-news-main-menu" id="stickyMenu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="viralnewsNav">
-
-                        <!-- Logo -->
-                        <a class="nav-brand" href="/"><img src="{{url('img/core-img/logo.png')}}" alt="Logo"></a>
-
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="classy-menu">
-
-                            <!-- close btn -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-
-                            <!-- Nav Start -->
-                            <div class="classynav">
-                                <ul>
-                                    @php($index = 0)
-                                    @foreach ($menuItems as $item)
-                                      <li {{$index==0?'class=active': ''}}><a href="{{$item['link']}}">{{$item['name']}}</a></li>
-                                      @php($index++)
-                                    @endforeach
-                                </ul>
-
-                                <!-- Search Button -->
-                                <div class="search-btn">
-                                    <i id="searchbtn" class="fa fa-search" aria-hidden="true"></i>
-                                </div>
-
-                                <!-- Search Form -->
-                                <div class="viral-search-form">
-                                    <form id="search" action="/search" method="get">
-                                        <input type="text" name="q" placeholder="Nhập từ khóa ...">
-                                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                    </form>
-                                </div>
-
-                                <!-- Video Post Button -->
-                                {{-- <div class="add-post-button">
-                                    <a href="#" class="btn add-post-btn">Add Post</a>
-                                </div> --}}
-
-                            </div>
-                            <!-- Nav End -->
-                        </div>
-                    </nav>
-                </div>
+         </div>
+         <header id="masthead" class="site-header" role="banner">
+            <div class="site-branding container">
+               <div class="row">
+                  <div class="col-md-4 header-logo">
+                     <a href="/" class="custom-logo-link" rel="home"><img width="185" height="55" src="/images/newspaperx_logo_185x55_dark.png" class="custom-logo" alt="Newspaper X"></a> 
+                  </div>
+                  <div class="col-md-8 header-banner">
+                     <a href="#">
+                     <img width="729" height="90" src="/images/banner.webp" class="attachment-newspaper-x-wide-banner size-newspaper-x-wide-banner" alt=""> </a>
+                  </div>
+               </div>
             </div>
-        </div>
-    </header>
-    <!-- ##### Header Area End ##### -->
+            <nav id="site-navigation" class="main-navigation" role="navigation">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span class="fa fa-bars"></span></button>
+                        <div class="menu-primary-menu-container">
+                           <ul id="primary-menu" class="menu nav-menu" aria-expanded="false">
+                                @foreach($menuItems as $menu)
+                                    <li id="menu-item-127" class="menu-item {{$menu['link']=='/'?'current-menu-item':''}}"><a href="{{$menu['link']}}" aria-current="page">{{$menu['name']}}</a></li>
+                                @endforeach
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </nav>
+        </header>
 
-  <div class="viral-story-blog-post section-padding-0-50" style="margin-top: 20px;">
-      <div class="container">
-          <div class="row">
-              <!-- Blog Posts Area -->
-              <div class="col-12 col-md-9">
-                @yield('main-section')
+        @yield('main')               
+
+         <footer id="colophon" class="site-footer" role="contentinfo">
+            <div class="back-to-top-area">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12 text-center">
+                        <a href="javascript:void(0)" id="back-to-top" class="">
+                        <span>Go Up</span>
+                        <i class="fa fa-angle-up" aria-hidden="true"></i>
+                        </a>
+                     </div>
+                  </div>
+               </div>
             </div>
-              @include('sidebar')
-          </div>
+            <div class="site-info ">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        © 2019 Website tin tức thể thao - phát triển bởi nhóm 2 FOSS
+                        <nav id="footer-navigation" class="pull-right text-right hidden-xs">
+                           <div class="menu">
+                              <ul>
+                                @foreach($menuItems as $menu)
+                                    <li class="page_item page-item-132"><a href="{{$menu['link']}}">{{$menu['name']}}</a></li>
+                                @endforeach
+                              </ul>
+                           </div>
+                        </nav>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </footer>
       </div>
-    </div>
-    <!-- ##### Blog Post Area End ##### -->
-    <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area">
-        <!-- Bottom Footer Area -->
-        <div class="bottom-footer-area">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <div class="col-12">
-                        <!-- Copywrite -->
-                        <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- ##### Footer Area Start ##### -->
 
-    <!-- ##### All Javascript Files ##### -->
-    <!-- jQuery-2.2.4 js -->
-    <script src="{{url('js/jquery/jquery-2.2.4.min.js')}}"></script>
-    <!-- Popper js -->
-    <script src="{{url('js/bootstrap/popper.min.js')}}"></script>
-    <!-- Bootstrap js -->
-    <script src="{{url('js/bootstrap/bootstrap.min.js')}}"></script>
-    <!-- All Plugins js -->
-    <script src="{{url('js/plugins/plugins.js')}}"></script>
-    <!-- Active js -->
-    <script src="{{url('js/active.js')}}"></script>
-</body>
-
+      <script type="text/javascript" src="/js/owl.carousel.min.js"></script>
+      <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/js/navigation.js"></script>
+      <script type="text/javascript" src="/js/scripts.js"></script>
+      
+   </body>
 </html>

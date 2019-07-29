@@ -14,12 +14,14 @@ class HomeController extends Controller
         
         $lastestPosts = $this->getLastestPosts();
         $postInCats = $this->getPostInCats();
+        $randomPosts = Post::orderByRaw("RAND()")->limit(3)->get();
+        $randomPosts->load('category', 'user');
 
-        return view('index', compact('lastestPosts', 'postInCats'));
+        return view('index', compact('postInCats', 'randomPosts'));
     }
 
     public function getLastestPosts() {
-        $lastestPosts = Post::limit(6)->orderBy("created_at", 'DESC')->get();
+        $lastestPosts = Post::limit(3)->orderBy("created_at", 'DESC')->get();
         $lastestPosts->load('category', 'user');
         return $lastestPosts;
     }

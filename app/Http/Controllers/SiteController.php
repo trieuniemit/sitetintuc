@@ -21,7 +21,7 @@ class SiteController extends Controller
     public function category($catSlug) {
         $cat = Category::where('slug', $catSlug)->first();
         $title = $cat->name;
-        $posts = Post::where('category_id', $cat->id)->paginate(10);
+        $posts = Post::where('category_id', $cat->id)->paginate(6);
         return view('category', compact('posts', 'title', 'cat'));
     }
 
@@ -29,7 +29,7 @@ class SiteController extends Controller
         $user = User::where('username', $username)->first();
         $title = "Bài viết của " .$user->fullname;
         $posts = Post::where('user_id', $user->id)->paginate(10);
-        return view('author', compact('posts', 'user'));
+        return view('author', compact('posts', 'user', 'title'));
     }
 
     public function search(Request $request) {

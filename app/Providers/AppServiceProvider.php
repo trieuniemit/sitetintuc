@@ -44,14 +44,13 @@ class AppServiceProvider extends ServiceProvider
                     'link' => "/$cat->slug"
                 ];
             }
+            $lastestPosts = Post::limit(3)->orderBy("created_at", 'DESC')->get();
+            $lastestPosts->load('category', 'user');
 
-            $randomPosts = Post::orderByRaw("RAND()")->get();
-            $randomPosts->load('category', 'user');
-
-            $trendingPosts = Post::limit(5)->orderBy("views", 'DESC')->get();
+            $trendingPosts = Post::limit(10)->orderBy("views", 'DESC')->get();
             $trendingPosts->load('category', 'user');
 
-            view()->share(compact('menuItems', 'randomPosts', 'trendingPosts'));
+            view()->share(compact('menuItems', 'trendingPosts', 'lastestPosts'));
         }
 
         view()->composer('*', function($view) use ($auth) {
