@@ -12,7 +12,7 @@
                 <ul class="nav nav-tabs fright" data-tabs="tabs">
                     <li class="nav-item ">
                     <a class="nav-link active" href="{{route('editpassword')}}">
-                        <i class="material-icons">bug_report</i> Đổi mật khẩu
+                        <i class="material-icons">edit</i> Đổi mật khẩu
                         <div class="ripple-container"></div>
                         </a>
                     </li>
@@ -64,7 +64,7 @@
                         @endif
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary pull-right">Cập nhật hồ sơ</button>
+                <button type="submit" class="btn btn-primary pull-right">Cập nhật</button>
                 <div class="clearfix"></div>
               </form>
             </div>

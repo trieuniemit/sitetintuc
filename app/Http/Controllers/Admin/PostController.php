@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
         $posts->load('category', 'user');
         $currPage = 'posts';
         $title = 'Bài viết';
@@ -37,8 +37,10 @@ class PostController extends Controller
         $users = User::all();
         $categories = Category::all();
         $currPage = 'posts';
+        $post = new Post();
+        $edit = false;
         $title = 'Thêm bài viết';
-        return view('admin.post_create', compact('users','categories','currPage','title'));
+        return view('admin.post_add_edit', compact('users','edit', 'post', 'categories','currPage','title'));
     }
 
     /**
@@ -48,25 +50,19 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-
+    {   
+        //dd($request);
         $rule = [
             'title' => 'required|max:191',
-            'desc' => 'required|max:65535',
             'thumb' => 'required|image',
-            'slug' => 'required|max:65535',
             'content' => 'required|max:65535'
         ];
 
         $messenger = [
             'title.required' => 'Tiêu đề không được để trống.',
             'title.max' => 'Tiêu đề không quá 191 ký tự.',
-            'desc.required' => 'Không được để trống phần mô tả.',
-            'desc.max' => 'Mô tả không quá 65535 ký tự.',
             'thumb.required' => 'không được để trống phần ảnh',
             'thumb.image' => 'file ảnh phải có định dạng jpeg, png, bmp, gif hoặc svg',
-            'slug.required' => 'Slug không được để trống.',
-            'slug.max' => 'Slug không quá 65535 ký tự',
             'content.required' => 'Nội dung không được để trống.',
             'content.max' => 'nội dung không quá 65535 ký tự',
         ];
@@ -79,13 +75,23 @@ class PostController extends Controller
 
             $newPost = new Post(); // khoi tao post moi.
             $newPost->title = $request->title;
-            $newPost->desc = $request->desc;
             $newPost->thumb = $file->getClientOriginalName();
-            $newPost->slug = $request->slug;
+
+            if(empty($request->slug))
+                $newPost->slug = str_slug($request->title, '-');
+            else
+                $newPost->slug = $request->slug;
+
+                
+            if(empty($request->desc))
+                $newPost->desc = str_limit(strip_tags($request->content), 150);
+            else
+                $newPost->desc = strip_tags($request->desc);
+
             $newPost->views = 0;
             $newPost->content = $request->content;
             $newPost->category_id = $request->category;
-            $newPost->user_id = Auth::get()->id;
+            $newPost->user_id = Auth::user()->id;
 
             $newPost->save(); //luu thong tin
 
@@ -105,7 +111,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        dd('111');
+        if(Auth::user()->role_id > 2 )
+            die();
+            
         $post = Post::find($id);
         $post->delete();
     }
@@ -118,12 +126,16 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $users = User::all();
-        $post = Post::where('id', $id)->first();
+        $post = Post::findOrFail($id);
+
+        if(Auth::user()->role_id >2 && Auth::user()->id != $post->user_id)
+            return redirect(route('posts.index'));
+
         $categories = Category::all();
         $currPage = 'posts';
+        $edit = true;
         $title = 'Chỉnh sửa bài viết';
-        return view('admin.post_edit', compact('id','users','post','categories','currPage','title'));
+        return view('admin.post_add_edit', compact('id','post','categories', 'edit', 'currPage','title'));
     }
 
     /**
@@ -135,22 +147,21 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $newPost = Post::findOrFail($id);
+
+        if(Auth::user()->role_id >2 && Auth::user()->id != $newPost->user_id)
+            return redirect(route('posts.index'));
+            
         $rule = [
             'title' => 'required|max:191',
-            'desc' => 'required|max:65535',
             'thumb' => 'image',
-            'slug' => 'required|max:65535',
             'content' => 'required|max:65535'
         ];
 
         $messenger = [
             'title.required' => 'Tiêu đề không được để trống.',
             'title.max' => 'Tiêu đề không quá 191 ký tự.',
-            'desc.required' => 'Không được để trống phần mô tả.',
-            'desc.max' => 'Mô tả không quá 65535 ký tự.',
             'thumb.image' => 'file ảnh phải có định dạng jpeg, png, bmp, gif hoặc svg',
-            'slug.required' => 'Slug không được để trống.',
-            'slug.max' => 'Slug không quá 65535 ký tự',
             'content.required' => 'Nội dung không được để trống.',
             'content.max' => 'nội dung không quá 65535 ký tự',
         ];
@@ -158,7 +169,6 @@ class PostController extends Controller
         $validator = Validator::make($request->all(),$rule,$messenger);
 
         if (!$validator->fails()) {
-            $newPost = Post::findOrFail($id); // khoi tao post moi.
             // dd($request->thumb);
             if($request->thumb) {
                 $file = $request->thumb;
@@ -167,14 +177,22 @@ class PostController extends Controller
             }
 
             $newPost->title = $request->title;
-            $newPost->desc = $request->desc;
-            $newPost->slug = $request->slug;
+            if(empty($request->desc))
+                $newPost->desc = str_limit(strip_tags($request->content), 150);
+            else
+                $newPost->desc = strip_tags($request->desc);
+
+            if(empty($request->slug))
+                $newPost->slug = str_slug($request->title, '-');
+            else
+                $newPost->slug = $request->slug;
+
             $newPost->content = $request->content;
             $newPost->category_id = $request->category;
-            $newPost->user_id = Auth::user()->id;
+            //$newPost->user_id = Auth::user()->id;
             $newPost->update(); //luu thong tin
 
-            return redirect(route('posts.index'));
+            return redirect("/admin/posts/$id/edit");
         } else {
             return redirect("/admin/posts/$id/edit")
                 ->withErrors($validator)

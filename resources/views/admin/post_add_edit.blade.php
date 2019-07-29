@@ -8,26 +8,34 @@
         <div class="col-md-10">
           <div class="card">
             <div class="card-header card-header-primary">
-                <h4 class="card-title fleft">Sửa bài viết</h4>
+                <h4 class="card-title fleft">
+                  @if($edit)
+                    Sửa bài viết
+                  @else
+                    Thêm bài viết
+                  @endif
+                </h4>
             </div>
             @if($errors->any())
               <h2 style="color: white;font-size: 20px;background-color: red;margin: auto;font-weight: bold;padding-left: 10px;padding-right: 10px">{{$errors->first()}}<h2>
             @endif
             <div class="card-body">
-            <form enctype="multipart/form-data" method="POST" action="{{ route('posts.update',['id'=>$post->id])}}">
+            <form enctype="multipart/form-data" method="POST" action="{{ $edit?route('posts.update',['id'=>$post->id]): route('posts.store')}}">
                 @csrf
-                {{ method_field('PUT') }}
+                @if($edit)
+                  {{ method_field('PUT') }}
+                @endif
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Tiêu đề</label>
-                        <input type="text" class="form-control" name="title" value="{{$post->title}}">
+                        <input type="text" class="form-control" name="title" value="{!! $post->title !!}">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                         <label class="bmd-label-floating">Mô tả</label>
-                        <input type="text" class="form-control" name="desc" value="{{$post->desc}}">
+                        <input type="text" class="form-control" name="desc" value="{!! $post->desc !!}">
                     </div>
                   </div>
                 </div>
@@ -41,7 +49,7 @@
                   </div>
                   <div class="col-md-10">
                     <div class="form-group">
-                        <label margin- class="bmd-label-floating">Ảnh thay thế</label>
+                        <label margin- class="bmd-label-floating">Ảnh đại diện</label>
                         <input type="file" class="form-control" name="thumb">
                     </div>
                   </div>
@@ -77,7 +85,13 @@
                     </div>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary pull-right">sửa tin</button>
+                <button type="submit" class="btn btn-primary pull-right">
+                  @if($edit)
+                    Cập nhật
+                  @else
+                    Thêm mới
+                  @endif
+                </button>
 
                 <div class="clearfix"></div>
               </form>

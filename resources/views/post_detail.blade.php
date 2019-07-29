@@ -20,7 +20,7 @@
                         <h2 class="entry-title">{{$post->title}}</h2>
                     </header>
                     <div class="entry-content">
-                        {{$post->content}}
+                        {!! $post->content !!}
                     </div>
                     <div class="fb-comment" style="margin: 40px -5px 20px; width: 100%">
                         <div class="fb-comments" data-href="{{Request::url()}}" data-width="100%" data-numposts="5"></div>

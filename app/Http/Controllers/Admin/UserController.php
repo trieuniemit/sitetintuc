@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
 use Auth;
 use Illuminate\Http\Request;
 use Validator;
@@ -20,12 +21,13 @@ class UserController extends Controller
     }
     public function index()
     {
-        if(Auth::user()->id != 1)
+        if(Auth::user()->role_id != 1)
             return redirect('/admin');
 
         $users = User::all();
+        $users->load('role');
         $currPage = 'users';
-        $title = 'Quản trị viên';
+        $title = 'Quản lý người dùng';
         return view('admin/user', compact('users', 'currPage', 'title'));
     }
 
@@ -36,13 +38,17 @@ class UserController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->id != 1)
+        if(Auth::user()->role_id != 1)
             return redirect('/admin');
 
-        $users = User::all();
+        $roles = Role::all();
+
         $currPage = 'users';
         $title = 'Thêm mới quản trị viên';
-        return view('admin/user-add', compact('users', 'currPage', 'title'));
+        $edit = false;
+        $user = new User();
+
+        return view('admin/user-add-edit', compact('currPage','roles', 'title', 'edit', 'user'));
     }
 
     /**
@@ -53,11 +59,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->id != 1)
+        if(Auth::user()->role_id != 1)
             return redirect('/admin');
 
         $rule = [
-            'username' => 'required|min:5',
+            'username' => 'required|min:5|unique:users,username,'.$request->username,
             'email' => 'required|email',
             'fullname' => 'required|max:33|min:6',
             'phone' => 'required|regex:/(0)[0-9]{9}/',
@@ -67,6 +73,7 @@ class UserController extends Controller
         $messenger = [
             'username.required' => 'Tên người dùng không được để trống.',
             'username.max' => 'Tên người dùng phải chứa ít nhất 5 ký tự.',
+            'username.unique' => 'Tên người dùng đã tồn tại.',
             'email.required' => 'Email không được để trống.',
             'email.email' => 'Email không đúng định dạng.',
             'fullname.required' => 'Họ tên người dùng không được để trống.',
@@ -86,6 +93,7 @@ class UserController extends Controller
             $newUser->email = $request->email;
             $newUser->fullname = $request->fullname;
             $newUser->phone = $request->phone;
+            $newUser->role_id = $request->role;
             if($request->input('newPassword') == $request->input('retypeNewPassword')){
                 $newUser->password = bcrypt($request->input('newPassword'));
 
@@ -130,10 +138,13 @@ class UserController extends Controller
         if(Auth::user()->id != 1)
             return redirect('/admin');
 
+        $roles = Role::all();
+
         $user = User::find($id);
         $currPage = 'users';
-        $title = 'Sửa thông tin quản trị viên';
-        return view('admin/user-edit', compact('user', 'currPage', 'title'));
+        $title = 'Sửa thông tin người dùng';
+        $edit = true;
+        return view('admin/user-add-edit', compact('user','roles', 'currPage', 'title', 'edit'));
     }
 
     /**
@@ -173,6 +184,7 @@ class UserController extends Controller
                 $user = User::find($id);
                 $user->email = $request->email;
                 $user->phone = $request->phone;
+                $user->role_id = $request->role;
                 $user->fullname = $request->fullname;
                 if(trim($request->password) != '') {
                     $user->password = bcrypt($request->password);

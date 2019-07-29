@@ -43,7 +43,7 @@
                 <li class="nav-item {{$currPage=='posts'?'active': ''}}">
                     <a class="nav-link" href="{{route('posts.index')}}">
                         <i class="fa fa-list-alt"></i>
-                        <p>Tin tức</p>
+                        <p>Bài viết</p>
                     </a>
                 </li>
                 <li class="nav-item {{$currPage=='categories'?'active': ''}}">
@@ -56,10 +56,16 @@
                     <li class="nav-item {{$currPage=='users'?'active': ''}}">
                         <a class="nav-link" href="/admin/users">
                             <i class="material-icons">person</i>
-                            <p>Quản trị viên</p>
+                            <p>Quản lý người dùng</p>
                         </a>
                     </li>
                 @endif
+                <li class="nav-item">
+                    <a class="nav-link" href="/" target="_blank">
+                        <i class="fa fa-home"></i>
+                        <p>Xem trang tin</p>
+                    </a>
+                </li>
             </ul>
             </div>
         </div>

@@ -9,12 +9,11 @@
             <div class="card-header card-header-primary">
                 <div class="fleft">
                     <h4 class="card-title">Danh sách các bài viết</h4>
-                    {{-- <p class="card-category">Complete your profile</p> --}}
                 </div>
                 <ul class="nav nav-tabs fright" data-tabs="tabs">
                     <li class="nav-item ">
                         <a class="nav-link active" href="{{route('posts.create')}}">
-                        <i class="material-icons">bug_report</i> Thêm mới
+                        <i class="material-icons">add</i> Thêm mới
                         <div class="ripple-container"></div>
                         </a>
                     </li>
@@ -46,17 +45,22 @@
                                 <td>{{ $post->created_at }}</td>
                                 <td>{{ $post->updated_at }}</td>
                                 <td class="td-actions text-right">
-                                    <a href="{{ route('posts.edit',['id'=> $post->id ]) }}" class="btn btn-primary btn-link btn-sm "  style=" margin:30px 0px" data-original-title="Edit Task" aria-describedby="tooltip535830">
-                                        <i class="material-icons">edit</i>
-                                    </a>
-                                    <button type="submit" rel="tooltip" data-url="{{ route('posts.destroy',['id'=> $post->id ]) }}" class="btn btn-danger btn-link btn-sm delete">
-                                        <i class="material-icons">close</i>
-                                    </button>
+                                    @if($loginUser->id == $post->user_id || $loginUser->role_id <=2 )
+                                        <a href="{{ route('posts.edit',['id'=> $post->id ]) }}" class="btn btn-primary btn-link btn-sm "  style=" margin:30px 0px" data-original-title="Edit Task" aria-describedby="tooltip535830">
+                                            <i class="material-icons">edit</i>
+                                        </a>
+                                        <button type="submit" rel="tooltip" data-url="{{ route('posts.destroy',['id'=> $post->id ]) }}" class="btn btn-danger btn-link btn-sm delete">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="navigationn">
+                    {{$posts->links()}}
                 </div>
                 </div>
             </div>

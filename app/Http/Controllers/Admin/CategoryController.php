@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Validator;
 
 class CategoryController extends Controller
 {
@@ -14,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(10);
         $currPage = 'categories';
         $title = 'Danh mục tin';
         return view('admin.category', compact('categories','currPage','title'));
@@ -29,7 +30,9 @@ class CategoryController extends Controller
     {
         $currPage = 'categories';
         $title = 'Thêm mới danh mục tin';
-        return view('admin.category_create', compact('currPage','title'));
+        $edit = false;
+        $category = new Category();
+        return view('admin.category_add_edit', compact('currPage','category','title', 'edit'));
     }
 
     /**
@@ -40,15 +43,38 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $newCategory = new Category();
-        $newCategory->name = $request->name;
-        $newCategory->desc = $request->desc;
-        $newCategory->slug = $request->slug;
-        $newCategory->parent= 0;
+        $rules = [
+            'name' => 'required|min:5|max:50',
+            'desc' =>'required|min:10',
+            'slug' => 'required|min:5|unique:categories,slug,'.$request->slug
+        ];
+        $messages = [
+            'slug.required' => 'Slug là trường bắt buộc',
+            'slug.min' => 'Slug phải chứa ít nhất 5 kí tự',
+            'slug.unique' => 'Slug đã tồn tại. Slug phải là duy nhất.',
+            'desc.min' => 'Mô tả phải chứa ít nhất 10 kí tự',
+            'desc.required' => 'Số điện thoại là trường bắt buộc',
+            'phone.regex' => 'Số điện thoại phải bắt đầu bằng số 0 và gồm 10 chữ số.',
+            'name.required' => 'Tên là trường bắt buộc',
+            'name.min' => 'Tên phải chứa ít nhất 5 kí tự',
+            'name.max' => 'Tên chỉ chứa tối đa 50 kí tự'
+        ];
 
-        $newCategory->save();
+        $validator = Validator::make($request->all(), $rules, $messages);
 
-        return redirect(route('categories.index'));
+        if ($validator->fails()) {
+            // dd($request->all());
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $newCategory = new Category();
+            $newCategory->name = $request->name;
+            $newCategory->desc = $request->desc;
+            $newCategory->slug = $request->slug;
+            $newCategory->parent= 0;
+    
+            $newCategory->save(); //update thong tin.
+            return redirect(route('categories.index'));
+        }
     }
 
     /**
@@ -74,7 +100,8 @@ class CategoryController extends Controller
         $category = Category::where('id',$id)->first();
         $currPage = 'categories';
         $title = 'Chỉnh sửa danh mục tin';
-        return view('admin.category_edit', compact('id','category','currPage','title'));
+        $edit = true;
+        return view('admin.category_add_edit', compact('id','edit','category','currPage','title'));
     }
 
     /**
@@ -86,15 +113,42 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $newCategory = Category::find($id); // tim doi tuong can update
-        $newCategory->name = $request->name;
-        $newCategory->desc = $request->desc;
-        $newCategory->slug = $request->slug;
-        $newCategory->parent= 0;
+        $newCategory = Category::find($id);
 
-        $newCategory->update(); //update thong tin.
+        $rules = [
+            'name' => 'required|min:5|max:50',
+            'desc' =>'required|min:10',
+            'slug' => 'required|min:5|unique:categories,slug,'.$request->slug
+        ];
+        $messages = [
+            'slug.required' => 'Slug là trường bắt buộc',
+            'slug.min' => 'Slug phải chứa ít nhất 5 kí tự',
+            'slug.unique' => 'Slug đã tồn tại. Slug phải là duy nhất.',
+            'desc.min' => 'Mô tả phải chứa ít nhất 10 kí tự',
+            'desc.required' => 'Số điện thoại là trường bắt buộc',
+            'phone.regex' => 'Số điện thoại phải bắt đầu bằng số 0 và gồm 10 chữ số.',
+            'name.required' => 'Tên là trường bắt buộc',
+            'name.min' => 'Tên phải chứa ít nhất 5 kí tự',
+            'name.max' => 'Tên chỉ chứa tối đa 50 kí tự'
+        ];
 
-        return redirect(route('categories.index'));
+        if($newCategory->slug == $request->slug) 
+            unset($rules['slug']);
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            // dd($request->all());
+            return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $newCategory->name = $request->name;
+            $newCategory->desc = $request->desc;
+            $newCategory->slug = $request->slug;
+            $newCategory->parent= 0;
+    
+            $newCategory->update(); //update thong tin.
+            return redirect(route('categories.index'));
+        }
     }
 
     /**

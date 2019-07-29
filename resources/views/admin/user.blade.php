@@ -8,7 +8,7 @@
             <div class="card">
             <div class="card-header card-header-primary">
                 <div class="fleft">
-                    <h4 class="card-title">Danh sách quản trị viên</h4>
+                    <h4 class="card-title">Danh sách người dùng</h4>
                 </div>
                 <ul class="nav nav-tabs fright" data-tabs="tabs">
                     <li class="nav-item ">
@@ -25,8 +25,10 @@
                     <table class="table table-hover">
                         <thead class="">
                             <th>ID</th>
-                            <th>Tên</th>
+                            <th>Tên người dùng</th>
+                            <th>Họ tên</th>
                             <th>Email</th>
+                            <th>Quyền</th>
                             <th>Ngày tạo</th>
                             <th></th>
                         </thead>
@@ -34,16 +36,18 @@
                         @foreach ($users as $user)
                             <tr id="row-{{$user->id}}">
                                 <td>{{ $user->id }} </td>
-                                <td>{{ $user->username }}</td>
+                                <th>{{ $user->username }}</th>
+                                <td>{{ $user->fullname }}</td>
                                 <td>{{ $user->email }} </td>
+                                <td>{{ $user->role->name }}</th>
                                 <td>{{ $user->created_at }}</td>
                                 <td class="td-actions text-right">
                                     <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm">
-                                        <a class="nav-link active" href="{{ route('users.edit', $user->id )}}">
+                                        <a class="nav-link active" href="{{ $loginUser->id==$user->id?'/admin/profile':route('users.edit', $user->id )}}">
                                             <i class="material-icons">edit</i>
                                         </a>
                                     </button>
-                                    @if($user->id != 1)
+                                    @if($user->id != $loginUser->id)
                                         <button type="submit" rel="tooltip" data-url="{{route('users.destroy', $user->id)}}" class="btn btn-danger btn-link btn-sm delete">
                                             <i class="material-icons">close</i>
                                         </button>
