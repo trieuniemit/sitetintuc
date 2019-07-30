@@ -4,14 +4,14 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
                 <div class="card-icon">
                 <i class="fa fa-list-alt"></i>
                 </div>
                 <p class="card-category">Số bài viết</p>
-                <h3 class="card-title">49
+                <h3 class="card-title">{{$info['allPosts']}}
                 <small>bài</small>
                 </h3>
             </div>
@@ -23,53 +23,41 @@
             </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
                 <div class="card-icon">
                 <i class="fa fa-folder"></i>
                 </div>
                 <p class="card-category">Số danh mục</p>
-                <h3 class="card-title">100</h3>
+                <h3 class="card-title">{{$info['allCats']}}</h3>
             </div>
             <div class="card-footer">
+            @if($loginUser->role_id <= 2)
                 <div class="stats">
                     <i class="material-icons text-danger">add</i>
                     <a href="/admin/categories/create">Thêm mới</a>
                 </div>
+                @endif
             </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-4 col-md-6 col-sm-6">
             <div class="card card-stats">
             <div class="card-header card-header-danger card-header-icon">
                 <div class="card-icon">
                 <i class="material-icons">person</i>
                 </div>
                 <p class="card-category">Người dùng</p>
-                <h3 class="card-title">5</h3>
+                <h3 class="card-title">{{$info['allUsers']}}</h3>
             </div>
             <div class="card-footer">
+            @if($loginUser->role_id == 1)
                 <div class="stats">
-                <i class="material-icons">add</i> 
+                <i class="material-icons">add</i>
                 <a href="/admin/users/create">Thêm người dùng</a>
                 </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card card-stats">
-            <div class="card-header card-header-info card-header-icon">
-                <div class="card-icon">
-                <i class="fa fa-twitter"></i>
-                </div>
-                <p class="card-category">Followers</p>
-                <h3 class="card-title">+245</h3>
-            </div>
-            <div class="card-footer">
-                <div class="stats">
-                <i class="material-icons">update</i> Just Updated
-                </div>
+            @endif
             </div>
             </div>
         </div>

@@ -24,7 +24,15 @@ class AdminController extends Controller
             $usersRank[] = $crrUser;
         }
         $posts = Post::orderBy('views', 'DESC')->limit(5)->get();
-        return view('admin/admin', compact('usersRank','posts', 'currPage', 'title'));
+
+
+        $info = [
+            'allPosts' => DB::table('posts')->count(),
+            'allUsers' => DB::table('users')->count(),
+            'allCats' => DB::table('categories')->count()
+        ];
+
+        return view('admin/admin', compact('usersRank','posts', 'currPage', 'title', 'info'));
     }
 
     public function postAdmin () {

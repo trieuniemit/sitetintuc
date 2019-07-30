@@ -28,7 +28,7 @@
     <div class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="white" data-image="/admin-resources/images/sidebar-1.jpg">
             <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+            <a href="/" class="simple-text logo-normal">
                 TEAM 2 FOSS
             </a>
             </div>
@@ -46,13 +46,15 @@
                         <p>Bài viết</p>
                     </a>
                 </li>
-                <li class="nav-item {{$currPage=='categories'?'active': ''}}">
-                    <a class="nav-link" href="{{route('categories.index')}}">
-                        <i class="fa fa-folder"></i>
-                        <p>Danh mục tin</p>
-                    </a>
-                </li>
-                @if($loginUser->id == 1)
+                @if($loginUser->role_id <= 2)
+                    <li class="nav-item {{$currPage=='categories'?'active': ''}}">
+                        <a class="nav-link" href="{{route('categories.index')}}">
+                            <i class="fa fa-folder"></i>
+                            <p>Danh mục tin</p>
+                        </a>
+                    </li>
+                @endif
+                @if($loginUser->role_id == 1)
                     <li class="nav-item {{$currPage=='users'?'active': ''}}">
                         <a class="nav-link" href="/admin/users">
                             <i class="material-icons">person</i>
@@ -91,6 +93,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                 <a class="dropdown-item" href="/admin/profile">Hồ sơ</a>
+                                <a class="dropdown-item" href="/admin/profile/editpassword">Đổi mật khẩu</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/login">Đăng xuất</a>
                             </div>
